@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 1161843248}
   - component: {fileID: 1161843249}
   - component: {fileID: 1161843250}
+  - component: {fileID: 1161843251}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -959,7 +960,7 @@ MonoBehaviour:
   inputActionsAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   moveSpeed: 5
   gravity: -9.8
-  friction: 5
+  friction: 30
 --- !u!114 &1161843250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +973,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e17c99b0db10f40a29e73620928a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 6
+  healthMax: 6
+  healthText: {fileID: 282581476}
+--- !u!114 &1161843251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161843243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6271b7107779741b3c48f9b5254093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerAmmunition
+  ammoMax: 10
+  ammoQuantity: 50
+  ammoText: {fileID: 1948318343}
 --- !u!1 &1948318341
 GameObject:
   m_ObjectHideFlags: 0
