@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActionsAsset;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float fallSpeed = -9.8f;
+
+    private float verticalMovement = -2f;
     private InputActionMap playerMap;
     private InputAction moveAction;
-
     private CharacterController cc;
 
     private void Awake()
@@ -39,14 +43,17 @@ public class Player : MonoBehaviour
         if (isGrounded)
         {
             playerMovement = moveAction.ReadValue<Vector2>();
-            playerMovement = new Vector3(playerMovement.x, 0, playerMovement.y);
+            verticalMovement= -2f;
+            playerMovement = new Vector3(playerMovement.x, verticalMovement, playerMovement.y);
+            
         } 
         else
         {
-            playerMovement = new Vector3(0, -9.8f * Time.deltaTime, 0);
+            verticalMovement += fallSpeed * Time.deltaTime;
+            playerMovement = new Vector3(0, verticalMovement, 0);
         }
 
-        cc.Move(playerMovement);
+        cc.Move(playerMovement * moveSpeed * Time.deltaTime);
         
     }
 
