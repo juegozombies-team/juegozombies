@@ -5,6 +5,7 @@ public class ZombieBase : MonoBehaviour
 {
     private float health;
     public bool Active = true;
+    private bool isStunned = false;
     private RoundManager rm;
     private Player player;
     [SerializeField] private float speed = 5f; 
@@ -22,10 +23,7 @@ public class ZombieBase : MonoBehaviour
             {
                 
             }
-            if (health <= 0)
-            {
-                Despawn();
-            }
+
         }
     }
     private void PlayerPosCheck()
@@ -37,7 +35,9 @@ public class ZombieBase : MonoBehaviour
         if (timerPos < 0.2f)
         {
             timerPos += Time.deltaTime;
+            return false;
         }
+        timerPos = 0f;
         return true;
     }
     private void SetHealthBasedOnRound(int roundNumber)
@@ -53,5 +53,26 @@ public class ZombieBase : MonoBehaviour
     {
         SetHealthBasedOnRound(rm.currentRound);
 
+    }
+    public async void Stun()
+    {
+        isStunned = true;
+        await Awaitable.WaitForSecondsAsync(2f);
+        if (this != null)
+        {
+            isStunned = false;
+        }
+    }
+    public void ReceiveDamage(bool isHeadshot, float damage)
+    {
+        if (isHeadshot)
+        {
+            health -= damage * 5;
+        }
+        health -= damage;
+        if (health <= 0)
+        {
+            Despawn();
+        }
     }
 }
