@@ -17,7 +17,7 @@ public class playerAmmunition : MonoBehaviour
         ammoText.text = ammoText.text + " " + ammoMax + " / " + ammoQuantity;
     }
 
-    private void Update()
+    /* private void Update()
     {
         //testeo para ver si funciona
         if (Input.GetMouseButtonDown(0))
@@ -29,7 +29,7 @@ public class playerAmmunition : MonoBehaviour
         {
             rechargeAmmo();
         }
-    }
+    }*/
     public void fireAmmo()
     {
         ammoCurrent--;
