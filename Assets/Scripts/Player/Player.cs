@@ -9,31 +9,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float friction = 5f;
+    private int points = 0;
 
     private float horizontalMovement;
     private float forwardMovement;
 
     private float verticalMovement = -2f;
-    private InputActionMap playerMap;
-    private InputAction moveAction;
+    public Vector2 camDir = Vector2.zero;
     private CharacterController cc;
 
-    private void Awake()
-    {
-
-        playerMap = inputActionsAsset.FindActionMap("Player");
-
-        moveAction = playerMap.FindAction("Move");
-    }
-    private void OnEnable()
-    {
-        playerMap.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerMap.Disable();
-    }
+    [SerializeField] private PlayerInputs pi;
 
     private void Start()
     {
@@ -49,11 +34,12 @@ public class Player : MonoBehaviour
         
         if (isGrounded)
         {
-            playerMovement = moveAction.ReadValue<Vector2>();
+            playerMovement = pi.moveAction.ReadValue<Vector2>();
             horizontalMovement = Mathf.MoveTowards(horizontalMovement, playerMovement.x * moveSpeed, friction * Time.deltaTime);
             forwardMovement = Mathf.MoveTowards(forwardMovement, playerMovement.y * moveSpeed, friction * Time.deltaTime);
             verticalMovement = -2f;
             playerMovement = new Vector3(horizontalMovement, verticalMovement, forwardMovement);
+            camDir = pi.lookAction.ReadValue<Vector2>();
             
         } 
         else
@@ -64,6 +50,11 @@ public class Player : MonoBehaviour
 
         cc.Move(playerMovement * Time.deltaTime);
         
+    }
+    
+    public void AwardPoints(int pts)
+    {
+        points += pts;
     }
 
 }

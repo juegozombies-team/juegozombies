@@ -72,7 +72,16 @@ public class ZombieBase : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            player.AwardPoints(60);
+            if (isHeadshot)
+            {
+                player.AwardPoints(40);
+            }
             Despawn();
+        }
+        else
+        {
+            player.AwardPoints(10);
         }
     }
 }
