@@ -19,7 +19,7 @@ public class playerHealth : MonoBehaviour
         healthText.text = healthText.text + " " + health;
     }
 
-    private void Update()
+    /* private void Update()
     {
         //testeo de los metodos y ver si el hud cambia
        
@@ -33,7 +33,7 @@ public class playerHealth : MonoBehaviour
             gainHealth(1);
         }
         
-    }
+    } */
     public void gainHealth(int bonusHealth)
     {
         health += bonusHealth;
