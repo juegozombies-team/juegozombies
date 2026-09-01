@@ -7,7 +7,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActionsAsset;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float fallSpeed = -9.8f;
+    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float friction = 5f;
+
+    private float horizontalMovement;
+    private float forwardMovement;
 
     private float verticalMovement = -2f;
     private InputActionMap playerMap;
@@ -40,20 +44,25 @@ public class Player : MonoBehaviour
     {
         bool isGrounded = cc.isGrounded;
         Vector3 playerMovement;
+
+        
+        
         if (isGrounded)
         {
             playerMovement = moveAction.ReadValue<Vector2>();
-            verticalMovement= -2f;
-            playerMovement = new Vector3(playerMovement.x, verticalMovement, playerMovement.y);
+            horizontalMovement = Mathf.MoveTowards(horizontalMovement, playerMovement.x * moveSpeed, friction * Time.deltaTime);
+            forwardMovement = Mathf.MoveTowards(forwardMovement, playerMovement.y * moveSpeed, friction * Time.deltaTime);
+            verticalMovement = -2f;
+            playerMovement = new Vector3(horizontalMovement, verticalMovement, forwardMovement);
             
         } 
         else
         {
-            verticalMovement += fallSpeed * Time.deltaTime;
+            verticalMovement += gravity * Time.deltaTime;
             playerMovement = new Vector3(0, verticalMovement, 0);
         }
 
-        cc.Move(playerMovement * moveSpeed * Time.deltaTime);
+        cc.Move(playerMovement * Time.deltaTime);
         
     }
 
