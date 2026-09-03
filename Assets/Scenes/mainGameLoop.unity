@@ -817,6 +817,7 @@ GameObject:
   - component: {fileID: 1161843249}
   - component: {fileID: 1161843250}
   - component: {fileID: 1161843251}
+  - component: {fileID: 1161843252}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -961,6 +962,8 @@ MonoBehaviour:
   moveSpeed: 5
   gravity: -9.8
   friction: 30
+  camDir: {x: 0, y: 0}
+  pi: {fileID: 0}
 --- !u!114 &1161843250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,6 +993,106 @@ MonoBehaviour:
   ammoMax: 10
   ammoQuantity: 50
   ammoText: {fileID: 1948318343}
+--- !u!114 &1161843252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161843243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c376b07fb6f6bc48b3a9465f231e722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputs
+  inputActionsAsset: {fileID: 0}
+  playerMap:
+    m_Name: Player Map
+    m_Id: 022bba16-fb4d-4baf-a829-b0bd7c597ba3
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 656c8805-5428-46bb-b0ae-b6ff25c5dff5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  lookAction:
+    m_Name: Look
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ba482280-cf9c-4e36-aeef-bd257d6d3d52
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 222885d6-7937-4c06-a4a6-993ca6305e08
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  nextAction:
+    m_Name: Next
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5fedfefd-8733-4fec-a1a9-05c894d8bf70
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  prevAction:
+    m_Name: Prev
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bace3418-83c2-4e6e-a02f-8c36c14a4dcd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  sprintAction:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ce540f71-6348-4ec6-808c-04ae9e927974
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  aimAction:
+    m_Name: Aim
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 71294d6d-ab95-42ff-935a-87c3d641bafb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3e2c605e-d1fc-4a76-89d8-504b7d909dc8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  skillAction:
+    m_Name: Skill
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8b901eb0-1654-4df0-a507-0badac541167
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1948318341
 GameObject:
   m_ObjectHideFlags: 0

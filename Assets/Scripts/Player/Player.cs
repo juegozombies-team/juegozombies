@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float friction = 5f;
     private int points = 0;
+    public bool jugadorDentro = false;
 
     private float horizontalMovement;
     private float forwardMovement;
@@ -51,7 +52,15 @@ public class Player : MonoBehaviour
         cc.Move(playerMovement * Time.deltaTime);
         
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Interaction"))
+        {
+            jugadorDentro = true;
+        }
+    }
+
     public void AwardPoints(int pts)
     {
         points += pts;
