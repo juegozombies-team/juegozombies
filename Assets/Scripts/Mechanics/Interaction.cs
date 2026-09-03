@@ -4,19 +4,19 @@ using UnityEngine.InputSystem;
 public abstract class Interaccion : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private int puntosRequeridos;
-    [SerializeField] private bool usoUnico = false;
-    private InputAction interactAction;
-    private Player player;
-    [SerializeField] private GameObject textoInteraccion;
+    [SerializeField] protected int puntosRequeridos;
+    [SerializeField] protected bool usoUnico = false;
+    protected InputAction interactAction;
+    protected Player player;
+    [SerializeField] protected GameObject textoInteraccion;
 
-    private void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         interactAction = GameObject.FindWithTag("Player").GetComponent<PlayerInputs>().interactAction;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (player.jugadorDentro)
         {

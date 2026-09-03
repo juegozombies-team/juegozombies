@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float friction = 5f;
-    private int points = 0;
+    public int points = 0;
     public bool jugadorDentro = false;
 
     private float horizontalMovement;
