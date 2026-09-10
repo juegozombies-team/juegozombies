@@ -70,8 +70,12 @@ public class Player : MonoBehaviour
         if (other.CompareTag("PowerUp"))
         {
             PowerUp pu = other.GetComponent<PowerUp>();
-            currentPowerUp = pu.pu;
-            asyncRemovePowerUp();
+            if (pu.pu != PlayerBonus.None)
+            {
+                currentPowerUp = pu.pu;
+                asyncRemovePowerUp();
+            }
+            else currentPowerUp = PlayerBonus.MaxAmmo;
             Destroy(other);
         }
     }
@@ -90,6 +94,7 @@ public class Player : MonoBehaviour
 
     public void AwardPoints(int pts)
     {
+        if (currentPowerUp == PlayerBonus.DoublePoints) points += pts;
         points += pts;
     }
 
