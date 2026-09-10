@@ -41,10 +41,4 @@ public class PlayerInputs : MonoBehaviour
         playerMap.Disable();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }

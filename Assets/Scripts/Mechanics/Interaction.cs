@@ -7,6 +7,7 @@ public abstract class Interaccion : MonoBehaviour
     [SerializeField] protected int puntosRequeridos;
     [SerializeField] protected bool usoUnico = false;
     protected InputAction interactAction;
+    protected bool jugadorDentro = false;
     protected Player player;
     [SerializeField] protected GameObject textoInteraccion;
 
@@ -18,7 +19,7 @@ public abstract class Interaccion : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (player.jugadorDentro)
+        if (jugadorDentro)
         {
             if (interactAction.WasPressedThisFrame())
             {
@@ -28,4 +29,13 @@ public abstract class Interaccion : MonoBehaviour
     }
 
     protected abstract void Interactuar();
+
+    public virtual void PlayerEntered()
+    {
+        jugadorDentro = true;
+    }
+    public virtual void PlayerExit()
+    {
+        jugadorDentro = false;
+    }
 }
