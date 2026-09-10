@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
         Espray_curativo
     }
 
-        public struct LimitesInventario
+    public struct LimitesInventario
     {
         public int Balas_Pistola;
         public int Balas_Rifle;
@@ -59,9 +59,9 @@ public class Inventory : MonoBehaviour
         public itemIndex index;
         public bool isStackable;
         public int amount;
-        public static Item empty => new Item(itemType.Empty,itemIndex.None);
-        public static Item M1911 => new Item(itemType.Weapon,itemIndex.M1911,true);
-        public static Item startingAmmo => new Item(itemType.Ammo,itemIndex.Balas_Pistola,false,LimitesInventario.Defecto.Balas_Pistola/2);
+        public static Item empty => new Item(itemType.Empty, itemIndex.None);
+        public static Item M1911 => new Item(itemType.Weapon, itemIndex.M1911, true);
+        public static Item startingAmmo => new Item(itemType.Ammo, itemIndex.Balas_Pistola, false, LimitesInventario.Defecto.Balas_Pistola / 2);
         public Item(itemType item, itemIndex index, bool isWeapon = false, int amount = 1)
         {
             this.item = item;
@@ -75,13 +75,13 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void addItem()
@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour
         currentInventory = new Item[9];
         currentInventory[0] = Item.M1911;
         currentInventory[1] = Item.startingAmmo;
-        for(int i = 2; i < 9; i++)
+        for (int i = 2; i < 9; i++)
         {
             currentInventory[i] = Item.empty;
         }

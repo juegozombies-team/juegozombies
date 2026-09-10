@@ -69,10 +69,10 @@ public class Player : MonoBehaviour
         }
         if (other.CompareTag("PowerUp"))
         {
-            PowerUp pu other.GetComponent<PowerUp>();
-            currentPowerUp = pu.PowerUp;
+            PowerUp pu = other.GetComponent<PowerUp>();
+            currentPowerUp = pu.pu;
             asyncRemovePowerUp();
-            pu.Destroy();
+            Destroy(other);
         }
     }
     private async void asyncRemovePowerUp(){
