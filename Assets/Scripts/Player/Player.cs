@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public int points = 0;
     public enum PlayerBonus
     {
+        None,
         DoublePoints,
         HeadShots,
         Discount,
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
 
     private float horizontalMovement;
     private float forwardMovement;
+    private PlayerBonus currentPowerUp = PlayerBonus.None;
 
     private float verticalMovement = -2f;
     public Vector2 camDir = Vector2.zero;
@@ -65,6 +67,18 @@ public class Player : MonoBehaviour
         {
             other.GetComponent<Interaccion>().PlayerEntered();
         }
+        if (other.CompareTag("PowerUp"))
+        {
+            PowerUp pu other.GetComponent<PowerUp>();
+            currentPowerUp = pu.PowerUp;
+            asyncRemovePowerUp();
+            pu.Destroy();
+        }
+    }
+    private async void asyncRemovePowerUp(){
+        await Awaitable.WaitForSecondsAsync(20);
+        if (this == null) return;
+        currentPowerUp = PlayerBonus.None;
     }
     private void OnTriggerExit(Collider other)
     {
