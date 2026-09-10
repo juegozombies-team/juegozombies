@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float friction = 5f;
+
+    [SerializeField] private TextMeshProUGUI textPoints;
+
+    private string pointsStart;
     public int points = 0;
     public enum PlayerBonus
     {
@@ -32,6 +38,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         cc = GetComponent<CharacterController>();
+        pointsStart = textPoints.text;
+        textPoints.text = pointsStart + " " + points;
     }
 
     private void Update()
@@ -96,6 +104,7 @@ public class Player : MonoBehaviour
     {
         if (currentPowerUp == PlayerBonus.DoublePoints) points += pts;
         points += pts;
+        textPoints.text = pointsStart + " " + points;
     }
 
 }

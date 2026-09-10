@@ -1,59 +1,60 @@
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
 {
-    private float health;
-    public bool Active = true;
+    private float health = 10f;
+    // public bool Active = true;
     private bool isStunned = false;
-    private RoundManager rm;
+    // private RoundManager rm;
     private Player player;
-    [SerializeField] private float speed = 5f; 
-    private float timerPos = 0f;
+
+    private Transform playerTransform;
+
+    private Rigidbody rb;
+    [SerializeField] private float speed = 5f;
+
+    [SerializeField] private float rotationSpeed = 10f;
+
+    // private float timerPos = 0f;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").GetComponent<Player>();
-        SetHealthBasedOnRound(rm.currentRound);
+        playerTransform = GameObject.Find("Player").GetComponentInParent<Transform>();
+        // SetHealthBasedOnRound(rm.currentRound);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Active){
-            if (!isStunned) return;
-            if (TimedCheck())
-            {
-                
-            }
 
-        }
-    }
-    private void PlayerPosCheck()
+
+    private void FixedUpdate()
     {
-        
-    }
-    private bool TimedCheck()
-    {
-        if (timerPos < 0.2f)
+        if (!isStunned)
         {
-            timerPos += Time.deltaTime;
-            return false;
+            Vector3 direction = playerTransform.position - transform.position;
+
+            direction.y = 0;
+            direction.Normalize();
+
+            Vector3 position = transform.position + direction * speed * Time.fixedDeltaTime;
+            rb.MovePosition(position);
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion rotation = Quaternion.LookRotation(direction);
+                rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.fixedDeltaTime));
+            }
+        } 
+        else
+        {
+
+            rb.linearVelocity = Vector3.zero;
+
         }
-        timerPos = 0f;
-        return true;
-    }
-    private void SetHealthBasedOnRound(int roundNumber)
-    {
-        health = 10f + 2 * roundNumber + roundNumber - 1;
-    }
-    private void Despawn()
-    {
-        Active = false;
 
     }
-    private void Respawn()
-    {
-        SetHealthBasedOnRound(rm.currentRound);
 
-    }
     public async void Stun()
     {
         isStunned = true;
@@ -82,4 +83,67 @@ public class ZombieBase : MonoBehaviour
             player.AwardPoints(10);
         }
     }
+
+    private void Despawn()
+    {
+        Destroy(gameObject);
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (player != null)
+        {
+            player.loseHealth(1);
+        }
+    }
+
+    /*
+    void Update()
+    {
+        
+        if (Active){
+            if (!isStunned) return;
+            if (TimedCheck())
+            {
+                
+            }
+
+        }
+        
+    }
+    
+
+    
+    private bool TimedCheck()
+    {
+        if (timerPos < 0.2f)
+        {
+            timerPos += Time.deltaTime;
+            return false;
+        }
+        timerPos = 0f;
+        return true;
+    }
+    
+
+    private void SetHealthBasedOnRound(int roundNumber)
+    {
+        health = 10f + 2 * roundNumber + roundNumber - 1;
+    }
+    
+
+    
+    private void Respawn()
+    {
+        SetHealthBasedOnRound(rm.currentRound);
+
+    }
+    */
+
+
+
+
 }
