@@ -35,7 +35,7 @@ public class Hammer : MonoBehaviour
             }
             else
             {
-                //aca va el reproducir sonido de fallo
+                //acá va el reproducir sonido de fallo
             }
         }
 

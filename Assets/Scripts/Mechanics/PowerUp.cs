@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        pu = Player.PlayerBonus.HeadShots;
+        pu = (Player.PlayerBonus)Random.Range(0, 6);
     }
 
     void Update()
