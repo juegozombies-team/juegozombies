@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
         public int amount;
         public static Item empty => new Item(itemType.Empty,itemIndex.None);
         public static Item M1911 => new Item(itemType.Weapon,itemIndex.M1911,true);
-        public static Item startingAmmo => new Item(itemType.Ammo,itemIndex.Balas_Pistola,false,24);
+        public static Item startingAmmo => new Item(itemType.Ammo,itemIndex.Balas_Pistola,false,LimitesInventario.Defecto.Balas_Pistola/2);
         public Item(itemType item, itemIndex index, bool isWeapon = false, int amount = 1)
         {
             this.item = item;
@@ -94,6 +94,11 @@ public class Inventory : MonoBehaviour
     {
         equippedSlot = 0;
         currentInventory = new Item[9];
-        currentInventory[0] = Item.empty
+        currentInventory[0] = Item.M1911;
+        currentInventory[1] = Item.startingAmmo;
+        for(int i = 2; i < 9; i++)
+        {
+            currentInventory[i] = Item.empty;
+        }
     }
 }
