@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float friction = 5f;
     public int points = 0;
-    public bool jugadorDentro = false;
+    public enum PlayerBonus
+    {
+        DoublePoints,
+        HeadShots,
+        Discount,
+        Wings,
+        MaxAmmo
+    }
 
     private float horizontalMovement;
     private float forwardMovement;
@@ -20,6 +25,7 @@ public class Player : MonoBehaviour
     private CharacterController cc;
 
     [SerializeField] private PlayerInputs pi;
+    [SerializeField] private Inventory inv;
 
     private void Start()
     {
@@ -57,7 +63,14 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Interaction"))
         {
-            jugadorDentro = true;
+            other.GetComponent<Interaccion>().PlayerEntered();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Interaction"))
+        {
+            other.GetComponent<Interaccion>().PlayerExit();
         }
     }
 

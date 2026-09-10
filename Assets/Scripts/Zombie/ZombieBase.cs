@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
@@ -19,6 +18,7 @@ public class ZombieBase : MonoBehaviour
     void Update()
     {
         if (Active){
+            if (!isStunned) return;
             if (TimedCheck())
             {
                 
@@ -58,10 +58,8 @@ public class ZombieBase : MonoBehaviour
     {
         isStunned = true;
         await Awaitable.WaitForSecondsAsync(2f);
-        if (this != null)
-        {
-            isStunned = false;
-        }
+        if (this == null) return;
+        isStunned = false;
     }
     public void ReceiveDamage(bool isHeadshot, float damage)
     {
