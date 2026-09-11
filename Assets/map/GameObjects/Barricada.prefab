@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 4213092098923789484}
   - component: {fileID: 8337832839053977326}
   m_Layer: 0
-  m_Name: LevantarBarricada
+  m_Name: Barricada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
