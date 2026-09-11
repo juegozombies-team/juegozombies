@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5270674855497152813}
   m_Layer: 0
   m_Name: Puerta
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,3 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16416f36245b34f4993ee5c0ef7af02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  puntosRequeridos: 0
+  usoUnico: 0
+  textoInteraccion: {fileID: 0}

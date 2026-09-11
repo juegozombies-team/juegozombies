@@ -26,7 +26,7 @@ public class CameraPosition : MonoBehaviour
     void Update()
     {   
         Vector2 lookAround = pi.lookAction.ReadValue<Vector2>();
-        Debug.Log(lookAround);
+        
 
         Vector3 newDesiredAngleX = player.transform.eulerAngles + Vector3.up * lookAround.x * sensibility * Time.deltaTime;
         player.transform.eulerAngles =  Vector3.Slerp(player.transform.eulerAngles,newDesiredAngleX,smoothing);

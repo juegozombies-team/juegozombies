@@ -1323,7 +1323,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   reloadAction:
-    m_Name: 
+    m_Name: Reload
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 1e7dd35a-b06b-41b2-8282-ae5ca8087b05
@@ -2051,6 +2051,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5270674855497152813, guid: 4b75b4deedc44384091989b6dba7516c, type: 3}
+      propertyPath: textoInteraccion
+      value: 
+      objectReference: {fileID: 1495732276}
     - target: {fileID: 6776093549961593197, guid: 4b75b4deedc44384091989b6dba7516c, type: 3}
       propertyPath: m_Name
       value: Puerta

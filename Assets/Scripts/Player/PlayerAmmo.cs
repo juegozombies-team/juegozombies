@@ -22,7 +22,7 @@ public class playerAmmunition : MonoBehaviour
         pi = gameObject.GetComponent<PlayerInputs>();
     }
 
-    private void Update()
+   /* private void Update()
     {
         //testeo para ver si funciona
         if (pi.shootAction.WasPressedThisFrame())
@@ -34,7 +34,7 @@ public class playerAmmunition : MonoBehaviour
         {
             rechargeAmmo();
         }
-    }
+    }*/
     public void fireAmmo()
     {
         ammoCurrent--;
@@ -46,7 +46,7 @@ public class playerAmmunition : MonoBehaviour
     }
     public void rechargeAmmo()
     {
-        
+
         ammoUsed = ammoMax - ammoCurrent;
         if (ammoQuantity < ammoUsed)
         {
