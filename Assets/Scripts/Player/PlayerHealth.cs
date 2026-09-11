@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI healthText;
 
-    private int health = 6;
+    public int health = 6;
     private string healthTextStart;
     
     private void Awake()

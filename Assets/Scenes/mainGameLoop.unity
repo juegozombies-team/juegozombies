@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 1161843251}
   - component: {fileID: 1161843252}
   - component: {fileID: 1161843253}
+  - component: {fileID: 1161843254}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1153,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   healthMax: 6
   healthText: {fileID: 282581476}
+  health: 6
 --- !u!114 &1161843251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1285,19 @@ MonoBehaviour:
   hammerRadius: 5.5
   coolDown: 15
   isOnCooldown: 1
+--- !u!114 &1161843254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161843243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60724cada99a14b41b0530358f343f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverScript
+  ph: {fileID: 1161843250}
 --- !u!1 &1208102710
 GameObject:
   m_ObjectHideFlags: 0
