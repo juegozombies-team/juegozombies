@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         cc = GetComponent<CharacterController>();
+        pi = GetComponent<PlayerInputs>();
         pointsStart = textPoints.text;
         textPoints.text = pointsStart + " " + points;
     }
@@ -56,6 +57,8 @@ public class Player : MonoBehaviour
             forwardMovement = Mathf.MoveTowards(forwardMovement, playerMovement.y * moveSpeed, friction * Time.deltaTime);
             verticalMovement = -2f;
             playerMovement = new Vector3(horizontalMovement, verticalMovement, forwardMovement);
+            Quaternion rotacion = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+            playerMovement = rotacion*playerMovement;
             camDir = pi.lookAction.ReadValue<Vector2>();
             
         } 

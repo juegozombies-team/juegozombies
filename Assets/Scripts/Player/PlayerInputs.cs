@@ -15,7 +15,7 @@ public class PlayerInputs : MonoBehaviour
     public InputAction aimAction;
     public InputAction shootAction;
     public InputAction skillAction;
-    private void Awake()
+    private void Start()
     {
 
         playerMap = inputActionsAsset.FindActionMap("Player");
