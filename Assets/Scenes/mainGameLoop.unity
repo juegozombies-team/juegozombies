@@ -1132,12 +1132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   inputActionsAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveSpeed: 5
+  moveSpeed: 4
   gravity: -9.8
   friction: 30
   textPoints: {fileID: 864710123}
   points: 0
-  camDir: {x: 0, y: 0}
   pi: {fileID: 0}
   inv: {fileID: 0}
 --- !u!114 &1161843250

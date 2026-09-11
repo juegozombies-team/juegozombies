@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     private PlayerBonus currentPowerUp = PlayerBonus.None;
 
     private float verticalMovement = -2f;
-    public Vector2 camDir = Vector2.zero;
     private CharacterController cc;
 
     [SerializeField] private PlayerInputs pi;
@@ -59,8 +58,6 @@ public class Player : MonoBehaviour
             playerMovement = new Vector3(horizontalMovement, verticalMovement, forwardMovement);
             Quaternion rotacion = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
             playerMovement = rotacion*playerMovement;
-            camDir = pi.lookAction.ReadValue<Vector2>();
-            
         } 
         else
         {
