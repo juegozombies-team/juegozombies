@@ -17,6 +17,8 @@ public class ZombieBase : MonoBehaviour
 
     [SerializeField] private float rotationSpeed = 10f;
 
+    [SerializeField] private int zombieDamage = 1;
+
     // private float timerPos = 0f;
 
     void Start()
@@ -96,7 +98,7 @@ public class ZombieBase : MonoBehaviour
 
         if (player != null)
         {
-            player.loseHealth(1);
+            player.loseHealth(zombieDamage);
         }
     }
 

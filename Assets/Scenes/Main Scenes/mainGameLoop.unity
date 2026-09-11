@@ -1311,6 +1311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6271b7107779741b3c48f9b5254093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerAmmunition
+  raycastDistance: 100
+  cameraPos: {fileID: 330585546}
+  gunDamage: 0
   ammoMax: 10
   ammoQuantity: 50
   ammoText: {fileID: 1948318343}
@@ -1852,7 +1855,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -92.74835, w: 0}
+  m_margin: {x: 0, y: 0, z: -386.42245, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
