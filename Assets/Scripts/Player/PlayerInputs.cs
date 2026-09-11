@@ -32,6 +32,8 @@ public class PlayerInputs : MonoBehaviour
         shootAction = playerMap.FindAction("Shoot");
         skillAction = playerMap.FindAction("Skill");
 
+        playerMap.Enable();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
