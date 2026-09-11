@@ -7,9 +7,9 @@ public class playerAmmunition : MonoBehaviour
 
     [SerializeField] private float raycastDistance = 100f;
 
-    [SerializeField] private Transform cameraPos;
+    [SerializeField] private Camera cameraPos;
 
-    [SerializeField] private float gunDamage;
+    [SerializeField] private float gunDamage = 1f;
 
     [Header("Municion")]
     [SerializeField] private int ammoMax = 10;
@@ -32,11 +32,14 @@ public class playerAmmunition : MonoBehaviour
     }
 
 
-   /* private void Update()
+    private void Update()
     {
-        //testeo para ver si funciona
         if (pi.shootAction.WasPressedThisFrame())
         {
+            if(ammoCurrent > 0)
+            {
+                Shoot();
+            }
             fireAmmo();
         }
 
@@ -44,7 +47,37 @@ public class playerAmmunition : MonoBehaviour
         {
             rechargeAmmo();
         }
-    }*/
+    }
+
+    private void Shoot()
+    {
+        RaycastHit hit;
+        Vector3 origin = cameraPos.transform.position;
+        Vector3 direction = cameraPos.transform.forward;
+
+        if (Physics.Raycast(origin, direction, out hit, raycastDistance))
+        {
+            if (hit.collider.CompareTag("ZombieBody"))
+            {
+                
+                ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
+
+                zombie.ReceiveDamage(false, gunDamage);
+
+            }
+
+            if(hit.collider.CompareTag("ZombieHead"))
+            {
+
+                ZombieBase zombie = hit.collider.GetComponentInParent<ZombieBase>();
+
+                zombie.ReceiveDamage(true, gunDamage);
+
+            }
+
+        }
+
+    }
 
 
     public void fireAmmo()
@@ -72,5 +105,10 @@ public class playerAmmunition : MonoBehaviour
             ammoQuantity = 0;
         }
         ammoText.text = ammoTextStart + " " + ammoCurrent + " / " + ammoQuantity;
+    }
+
+    public void GainAmmo(int gainedAmmo)
+    {
+        ammoQuantity += gainedAmmo;
     }
 }
