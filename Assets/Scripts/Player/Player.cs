@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Interaction"))
         {
-            other.GetComponent<Interaccion>().PlayerEntered();
+            other.GetComponent<Interaction>().PlayerEntered();
         }
         if (other.CompareTag("PowerUp"))
         {
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Interaction"))
         {
-            other.GetComponent<Interaccion>().PlayerExit();
+            other.GetComponent<Interaction>().PlayerExit();
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Barricade : Interaccion
+public class Barricade : Interaction
 {
     [Header("Arrastra las barricadas en orden de aparición:")]
     [SerializeField] private GameObject[] barricades;

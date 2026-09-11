@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseMachine : Interaccion
+public abstract class BaseMachine : Interaction
 {
     protected Inventory inventory;
     protected AudioSource SFX_FaltaPlata;

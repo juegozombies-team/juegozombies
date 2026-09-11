@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class Interaccion : MonoBehaviour
+public abstract class Interaction : MonoBehaviour
 {
     [Header("Configuración")]
     [SerializeField] protected int puntosRequeridos;
@@ -12,8 +12,8 @@ public abstract class Interaccion : MonoBehaviour
     protected bool jugadorDentro = false;
     protected Player player;
     [SerializeField] protected TextMeshProUGUI textoInteraccion;
-    private String endOfString = " (E)";
-    private String fullString = "";
+    protected String endOfString = " (E)";
+    protected String fullString = "";
 
 
     protected virtual void Start()
