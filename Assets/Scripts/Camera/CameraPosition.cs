@@ -8,9 +8,9 @@ public class CameraPosition : MonoBehaviour
     [SerializeField] private float camSpeed = 1;
     [SerializeField] private float sensibility = 1;
     [SerializeField] private float smoothing = 1;
+    [SerializeField] private LayerMask coll;
     private PlayerInputs pi;
-    private Vector3 newDirX = new Vector3(1,0,0);
-    private Vector3 newDirY = new Vector3(0,1,0);
+    [SerializeField] private Vector3 camPosOffset = new Vector3(0.471f,0.7f,-1.8f);
     private GameObject player;
 
 
@@ -24,9 +24,7 @@ public class CameraPosition : MonoBehaviour
 
     
     void Update()
-    {
-        camara.transform.position = Vector3.Lerp(camara.transform.position, transform.position, Time.deltaTime * camSpeed);
-        
+    {   
         Vector2 lookAround = pi.lookAction.ReadValue<Vector2>();
         Debug.Log(lookAround);
 
@@ -35,10 +33,16 @@ public class CameraPosition : MonoBehaviour
 
         float newDesiredAngleY = camara.transform.eulerAngles.x - lookAround.y * sensibility * Time.deltaTime;
         newDesiredAngleY = Mathf.Lerp(camara.transform.eulerAngles.z, newDesiredAngleY, smoothing);
-        newDesiredAngleY = Mathf.Clamp(Normalize(newDesiredAngleY),-60f,60f);
+        newDesiredAngleY = Mathf.Clamp(Normalize(newDesiredAngleY),-80f,80f);
 
         Vector3 camRot = new Vector3(newDesiredAngleY, player.transform.eulerAngles.y, 0);
         camara.transform.eulerAngles = camRot;
+
+        Quaternion rotar_newPos = Quaternion.Euler(camara.transform.eulerAngles.x,player.transform.eulerAngles.y,0);
+
+        Vector3 new_camPosOffset = new Vector3(camPosOffset.x,camPosOffset.y,-1.8f / Mathf.Max(1,Mathf.Abs(newDesiredAngleY/20)));
+        transform.position = player.transform.position + rotar_newPos*new_camPosOffset;
+        camara.transform.position = Vector3.Lerp(camara.transform.position, transform.position, Time.deltaTime * camSpeed);
     }
 
     private float Normalize(float angle)
