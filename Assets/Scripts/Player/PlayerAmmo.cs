@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class playerAmmunition : MonoBehaviour
 {
+    [Header("Disparo")]
+
+    [SerializeField] private float raycastDistance = 100f;
+
+    [SerializeField] private Transform cameraPos;
+
+    [SerializeField] private float gunDamage;
+
+    [Header("Municion")]
     [SerializeField] private int ammoMax = 10;
     [SerializeField] private int ammoQuantity = 50;
     [SerializeField] private TextMeshProUGUI ammoText;
@@ -22,6 +31,7 @@ public class playerAmmunition : MonoBehaviour
         pi = gameObject.GetComponent<PlayerInputs>();
     }
 
+
    /* private void Update()
     {
         //testeo para ver si funciona
@@ -35,6 +45,8 @@ public class playerAmmunition : MonoBehaviour
             rechargeAmmo();
         }
     }*/
+
+
     public void fireAmmo()
     {
         ammoCurrent--;
