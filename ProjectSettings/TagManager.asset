@@ -7,6 +7,9 @@ TagManager:
   - Barricade
   - Interaction
   - PowerUp
+  - Undefined
+  - ZombieHead
+  - ZombieBody
   layers:
   - Default
   - TransparentFX
