@@ -12,6 +12,9 @@ public class ZombieBase : MonoBehaviour
 
     private Transform playerTransform;
 
+    private bool scriptedMovement = false;
+    private Vector3 scriptedDir = Vector3.zero;
+
     private Rigidbody rb;
     [SerializeField] private float speed = 5f;
 
@@ -34,7 +37,13 @@ public class ZombieBase : MonoBehaviour
     {
         if (!isStunned)
         {
-            Vector3 direction = playerTransform.position - transform.position;
+            Vector3 direction = playerTransform.position - transform.position; 
+            if (scriptedMovement)
+            {
+                if((scriptedDir - transform.position).magnitude < 1f) scriptedMovement = false;
+                else direction = scriptedDir - transform.position;
+            }
+             
 
             direction.y = 0;
             direction.Normalize();
@@ -146,6 +155,11 @@ public class ZombieBase : MonoBehaviour
     */
 
 
+    public void goTo( Vector3 position)
+    {
+        scriptedMovement = true;
+        scriptedDir = position;
 
+    }
 
 }
