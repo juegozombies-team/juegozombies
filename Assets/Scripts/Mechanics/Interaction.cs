@@ -8,7 +8,7 @@ public abstract class Interaction : MonoBehaviour
     [Header("Configuración")]
     [SerializeField] protected int puntosRequeridos;
     [SerializeField] protected bool usoUnico = false;
-    protected InputAction interactAction;
+    protected PlayerInputs pi;
     protected bool jugadorDentro = false;
     protected Player player;
     [SerializeField] protected TextMeshProUGUI textoInteraccion;
@@ -19,7 +19,7 @@ public abstract class Interaction : MonoBehaviour
     protected virtual void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        interactAction = GameObject.FindWithTag("Player").GetComponent<PlayerInputs>().interactAction;
+        pi = GameObject.FindWithTag("Player").GetComponent<PlayerInputs>();
         textoInteraccion.gameObject.SetActive(false);
     }
 
@@ -29,7 +29,7 @@ public abstract class Interaction : MonoBehaviour
         {
             textoInteraccion.text = fullString;
             textoInteraccion.gameObject.SetActive(true);
-            if (interactAction.WasPressedThisFrame())
+            if (pi.interactAction.WasPressedThisFrame())
             {
                 Interactuar();
             }

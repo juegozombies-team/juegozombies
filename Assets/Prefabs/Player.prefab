@@ -245,7 +245,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   reloadAction:
-    m_Name: 
+    m_Name: Reload
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 1e7dd35a-b06b-41b2-8282-ae5ca8087b05

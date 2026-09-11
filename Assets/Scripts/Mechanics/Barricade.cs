@@ -23,7 +23,7 @@ public class Barricade : Interaction
     // Update is called once per frame
     protected override void Update()
     {
-        if (jugadorDentro && interactAction.IsPressed())
+        if (jugadorDentro && pi.interactAction.IsPressed())
         {
             Interactuar();
         }
