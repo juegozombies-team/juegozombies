@@ -6,6 +6,7 @@ public class playerAmmunition : MonoBehaviour
     [SerializeField] private int ammoMax = 10;
     [SerializeField] private int ammoQuantity = 50;
     [SerializeField] private TextMeshProUGUI ammoText;
+    private PlayerInputs pi;
 
     private int ammoUsed;
     private int ammoCurrent;
@@ -16,20 +17,24 @@ public class playerAmmunition : MonoBehaviour
         ammoTextStart = ammoText.text;
         ammoText.text = ammoText.text + " " + ammoMax + " / " + ammoQuantity;
     }
+    private void Start()
+    {
+        pi = gameObject.GetComponent<PlayerInputs>();
+    }
 
-    /* private void Update()
+    private void Update()
     {
         //testeo para ver si funciona
-        if (Input.GetMouseButtonDown(0))
+        if (pi.shootAction.WasPressedThisFrame())
         {
             fireAmmo();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (pi.reloadAction.WasPressedThisFrame())
         {
             rechargeAmmo();
         }
-    }*/
+    }
     public void fireAmmo()
     {
         ammoCurrent--;

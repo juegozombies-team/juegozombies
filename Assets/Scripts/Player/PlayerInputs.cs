@@ -9,6 +9,7 @@ public class PlayerInputs : MonoBehaviour
     public InputAction moveAction;
     public InputAction lookAction;
     public InputAction interactAction;
+    public InputAction reloadAction;
     public InputAction nextAction;
     public InputAction prevAction;
     public InputAction sprintAction;
@@ -23,6 +24,7 @@ public class PlayerInputs : MonoBehaviour
         moveAction = playerMap.FindAction("Move");
         lookAction = playerMap.FindAction("Look");
         interactAction = playerMap.FindAction("Interact");
+        reloadAction = playerMap.FindAction("Reload");
         nextAction = playerMap.FindAction("Next");
         prevAction = playerMap.FindAction("Previous");
         sprintAction = playerMap.FindAction("Sprint");
