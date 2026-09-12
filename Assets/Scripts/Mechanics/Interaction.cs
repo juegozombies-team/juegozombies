@@ -20,14 +20,13 @@ public abstract class Interaction : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         pi = GameObject.FindWithTag("Player").GetComponent<PlayerInputs>();
-        textoInteraccion.gameObject.SetActive(false);
     }
 
     protected virtual void Update()
     {
         if (jugadorDentro)
         {
-            textoInteraccion.text = fullString;
+            textoInteraccion.text = "la casa de mickey mouse";
             textoInteraccion.gameObject.SetActive(true);
             if (pi.interactAction.WasPressedThisFrame())
             {

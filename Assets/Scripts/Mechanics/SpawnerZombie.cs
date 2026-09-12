@@ -5,7 +5,7 @@ public class SpawnerZombie : MonoBehaviour
 
     [SerializeField] GameObject zombie;
     [SerializeField] float zombieSpawnCooldown = 15f;
-    [SerializeField] Vector3 nearestBarricadePos;
+    [SerializeField] Transform nearestBarricadePos;
 
     private float zombieSpawnTimer;
 
@@ -27,6 +27,6 @@ public class SpawnerZombie : MonoBehaviour
     void SpawnZombie()
     {
         Instantiate(zombie, transform.position, zombie.transform.rotation);
-        zombie.GetComponent<ZombieBase>().goTo(nearestBarricadePos);
+        zombie.GetComponent<ZombieBase>().goTo(nearestBarricadePos.position);
     }
 }

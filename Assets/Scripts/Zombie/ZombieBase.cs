@@ -14,8 +14,10 @@ public class ZombieBase : MonoBehaviour
 
     private bool scriptedMovement = false;
     private Vector3 scriptedDir = Vector3.zero;
-
     private Rigidbody rb;
+
+    private Barricade ultimabarricada;
+
     [SerializeField] private float speed = 5f;
 
     [SerializeField] private float rotationSpeed = 10f;
@@ -110,6 +112,21 @@ public class ZombieBase : MonoBehaviour
             player.loseHealth(zombieDamage);
         }
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ZombieBarricade")){ 
+            ultimabarricada=other.GetComponentInParent<Barricade>();
+            ultimabarricada.zombiesClose++;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ZombieBarricade"))
+        {
+            ultimabarricada.zombiesClose--;
+        }
+    }
+
 
     /*
     void Update()

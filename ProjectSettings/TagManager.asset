@@ -10,6 +10,7 @@ TagManager:
   - Undefined
   - ZombieHead
   - ZombieBody
+  - ZombieBarricade
   layers:
   - Default
   - TransparentFX

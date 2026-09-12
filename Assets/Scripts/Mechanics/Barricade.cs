@@ -1,52 +1,98 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class Barricade : Interaction
 {
     [Header("Arrastra las barricadas en orden de aparición:")]
     [SerializeField] private GameObject[] barricades;
+    [SerializeField] private Collider ColliderPrincipal;
+    [SerializeField] private float delayBarricada = 3f;
+
     public bool isOpen { get; private set; } = false;
     private bool cycle = false;
-    [SerializeField] private float delayBarricada = 0.5f;
+    private int barricadasRestantes = 5;
+    public int zombiesClose = 0;
 
-    protected override void Start()
-    {
-        base.Start();
-
-        for (int i = 0; i < transform.childCount - 1; i++)
-        {
-            barricades[i] = transform.GetChild(i).gameObject;
-        }
-
-    }
-    // Update is called once per frame
     protected override void Update()
     {
-        if (jugadorDentro && pi.interactAction.IsPressed())
+        if (jugadorDentro)
         {
-            Interactuar();
+            textoInteraccion.text = fullString;
+            textoInteraccion.gameObject.SetActive(true);
+            if (pi.interactAction.IsPressed())
+            {
+                Interactuar();
+            }
+        }
+        else
+        {
+            textoInteraccion.gameObject.SetActive(false);
+        }
+
+        if (zombiesClose > 0)
+        {
+            SacarBarricada();
         }
     }
     protected override void Interactuar()
     {
-        StartCoroutine(BarricadeCorrutine());
+        if (!cycle && barricadasRestantes < barricades.Length)
+        {
+            player.AwardPoints(10);
+
+            StartCoroutine(BarricadeCorrutine());
+        }
     }
+
+    private void SacarBarricada()
+    {
+        if (!cycle && barricadasRestantes > 0)
+        {
+            
+            StartCoroutine(ZombieCorrutine());
+        }
+    }
+
     IEnumerator BarricadeCorrutine()
     {
-        if (cycle)
+        cycle = true;
+        for (int i = 0; i < barricades.Length; i++)
         {
-            cycle = false;
-            for (int i = 0; i < barricades.Length; i++)
+            if (barricades[i] != null && !barricades[i].activeSelf)
             {
-                if (barricades[i].activeSelf)
-                {
-                    barricades[i].SetActive(true);
-                    break;
-                }
+                barricades[i].SetActive(true);
+                barricadasRestantes++;
+                break; 
             }
-            yield return new WaitForSeconds(delayBarricada);
-            cycle = true;
         }
+
+        ColliderPrincipal.enabled = true;
+        isOpen = false;
+
+        yield return new WaitForSeconds(delayBarricada);
+        cycle = false;
+    }
+
+    IEnumerator ZombieCorrutine()
+    {
+        cycle = true;
+        for (int i = barricades.Length - 1; i >= 0; i--)
+        {
+            if (barricades[i] != null && barricades[i].activeSelf)
+            {
+                barricades[i].SetActive(false);
+                barricadasRestantes--;
+                break; 
+            }
+        }
+        if (barricadasRestantes <= 0 && ColliderPrincipal != null)
+        {
+            ColliderPrincipal.enabled = false;
+            isOpen = true;
+        }
+        yield return new WaitForSeconds(delayBarricada/3f);
+
+
+        cycle = false;
     }
 }
