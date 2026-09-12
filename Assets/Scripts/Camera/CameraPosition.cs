@@ -12,7 +12,7 @@ public class CameraPosition : MonoBehaviour
     private PlayerInputs pi;
     [SerializeField] private Vector3 camPosOffset = new Vector3(0.471f,0.7f,-1.8f);
     private GameObject player;
-    private Transform pivot;
+    private GameObject pivoti;
 
 
     void Start()
@@ -23,7 +23,7 @@ public class CameraPosition : MonoBehaviour
         if (player != null)
         {
             pi = player.GetComponent<PlayerInputs>();
-            pivot = player.transform.GetChild(2);
+            pivoti = player.transform.GetChild(2).gameObject;
         }
 
     }
@@ -47,6 +47,7 @@ public class CameraPosition : MonoBehaviour
         Quaternion rotar_newPos = Quaternion.Euler(camara.transform.eulerAngles.x,player.transform.eulerAngles.y,0);
 
         Vector3 new_camPosOffset = new Vector3(camPosOffset.x,camPosOffset.y,-1.8f / Mathf.Max(1,Mathf.Abs(newDesiredAngleY/20)));
+        //pivoti.transform.position;
         
         transform.position = player.transform.position + rotar_newPos*new_camPosOffset;
         camara.transform.position = Vector3.Lerp(camara.transform.position, transform.position, Time.deltaTime * camSpeed);
