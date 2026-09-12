@@ -1,28 +1,45 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.Rendering;
 
 public class Hammer : MonoBehaviour
 {
     [SerializeField] private float hammerRadius = 5.5f;
     [SerializeField] private float coolDown = 15.0f;
     [SerializeField] private bool isOnCooldown = true;
+    [SerializeField] private TextMeshProUGUI HammerText;
 
     private float cooldownTimer;
-
-    void Start()
+    private int timeLeft;
+    private int lastTimeLeft;
+    void Awake()
     {
         cooldownTimer = coolDown;
+        cooldownTimer = 0;
+        lastTimeLeft = -1;
     }
 
 
     void Update()
     {
         cooldownTimer += Time.deltaTime;
+        timeLeft = Mathf.CeilToInt(coolDown - cooldownTimer);
 
-        if (cooldownTimer > coolDown)
+        if (timeLeft <= 0)
         {
             isOnCooldown = false;
+            HammerText.text = " Hammer: Ready";
+
+        }
+        else
+        {
+            if (timeLeft != lastTimeLeft)
+            {
+                HammerText.text = "Hammer: " + timeLeft + "s";
+                lastTimeLeft = timeLeft;
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.X))

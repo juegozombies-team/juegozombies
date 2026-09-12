@@ -7,7 +7,7 @@ public class Door : Interaction
     protected override void Start()
     {
         base.Start();
-        fullString = "Abrir";
+        fullString = "Open";
     }
     protected override void Interactuar()
     {
