@@ -7,10 +7,17 @@ public class CameraPosition : MonoBehaviour
     [SerializeField] private float sensibility = 1;
     [SerializeField] private float smoothing = 1;
     [SerializeField] private LayerMask coll;
+    [SerializeField] private float MaxUpAngle = 80;
+    [SerializeField] private float MaxDownAngle = -80;
     private PlayerInputs pi;
     [SerializeField] private Vector3 camPosOffset = new Vector3(0.471f,0.7f,-1.8f);
     private GameObject player;
     private GameObject pivoti;
+
+    [Header("Seguridad de Colisión (0 - 1)")]
+    // dejar entre >0 y 1, 1 siendo que la camara se pega al jugador si choca una pared
+    [Range(0f, 1f)]
+    [SerializeField] private float ColisionSafety = 0.1f;
 
 
     void Start()
@@ -31,13 +38,12 @@ public class CameraPosition : MonoBehaviour
     {   
         Vector2 lookAround = pi.lookAction.ReadValue<Vector2>();
         
-
         Vector3 newDesiredAngleX = player.transform.eulerAngles + Vector3.up * lookAround.x * sensibility * Time.deltaTime;
         player.transform.eulerAngles =  Vector3.Slerp(player.transform.eulerAngles,newDesiredAngleX,smoothing);
 
         float newDesiredAngleY = camara.transform.eulerAngles.x - lookAround.y * sensibility * Time.deltaTime;
         newDesiredAngleY = Mathf.Lerp(camara.transform.eulerAngles.z, newDesiredAngleY, smoothing);
-        newDesiredAngleY = Mathf.Clamp(Normalize(newDesiredAngleY),-80f,80f);
+        newDesiredAngleY = Mathf.Clamp(Normalize(newDesiredAngleY),MaxDownAngle,MaxUpAngle);
 
         Vector3 camRot = new Vector3(newDesiredAngleY, player.transform.eulerAngles.y, 0);
         camara.transform.eulerAngles = camRot;
@@ -52,7 +58,7 @@ public class CameraPosition : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(pivoti.transform.position, difference, out hitInfo, 3f, coll))
         {
-            transform.position = hitInfo.point-(difference/10);
+            transform.position = hitInfo.point-(difference*ColisionSafety);
         }
         
         camara.transform.position = Vector3.Lerp(camara.transform.position, transform.position, Time.deltaTime * camSpeed);

@@ -4,15 +4,16 @@ public class SpawnerZombie : MonoBehaviour
 {
 
     [SerializeField] GameObject zombie;
-    [SerializeField] float zombieSpawnCooldown = 15f;
+    [SerializeField] float zombieSpawnCooldown = 5f;
     [SerializeField] Transform nearestBarricadePos;
+    private RoundManager rm;
 
-    private float zombieSpawnTimer;
+    public float zombieSpawnTimer;
 
     void Start()
     {
-        zombieSpawnTimer = zombieSpawnCooldown - Random.Range(0f,5f);
-
+        SetSpawnTimer();
+        rm = GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>();
     }
 
     void Update()
@@ -21,13 +22,15 @@ public class SpawnerZombie : MonoBehaviour
         if (zombieSpawnTimer > zombieSpawnCooldown)
         {
             SpawnZombie();
-            zombieSpawnTimer = 0;
         }
     }
 
     void SpawnZombie()
     {
-        Instantiate(zombie, transform.position, zombie.transform.rotation);
-        zombie.GetComponent<ZombieBase>().goTo(nearestBarricadePos.position);
+        rm.AddZombie(this,transform,nearestBarricadePos.position,zombie);
+    }
+    public void SetSpawnTimer()
+    {
+        zombieSpawnTimer = zombieSpawnTimer-(Random.Range(0f,0.2f)*16);
     }
 }

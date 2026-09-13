@@ -26,6 +26,8 @@ public class playerAmmunition : MonoBehaviour
 
     [Header("Sonido")]
     [SerializeField] private AudioSource ShootSfx;
+    [SerializeField] private AudioSource EmptyMagSfx;
+    [SerializeField] private AudioSource ReloadSfx;
 
     private int ammoUsed;
     private int ammoCurrent;
@@ -51,12 +53,17 @@ public class playerAmmunition : MonoBehaviour
             {
                 Shoot();
             }
+            else EmptyMagSfx.Play();
             fireAmmo();
         }
-
-        if (pi.reloadAction.WasPressedThisFrame())
+        if(ammoCurrent != ammoMax)
         {
-            rechargeAmmo();
+            
+            if (pi.reloadAction.WasPressedThisFrame())
+            {
+                rechargeAmmo();
+                ReloadSfx.Play();
+            }
         }
     }
 
@@ -75,7 +82,6 @@ public class playerAmmunition : MonoBehaviour
             {
                 
                 ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
-
                 zombie.ReceiveDamage(false, gunDamage);
                 psR.material = materialZombieHit;
             }
@@ -106,7 +112,6 @@ public class playerAmmunition : MonoBehaviour
     }
     public void rechargeAmmo()
     {
-
         ammoUsed = ammoMax - ammoCurrent;
         if (ammoQuantity < ammoUsed)
         {

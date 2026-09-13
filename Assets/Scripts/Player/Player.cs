@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textPoints;
 
+    [SerializeField] private AudioSource BarrierBuildSfx;
+
     private string pointsStart;
     public int points = 0;
     public enum PlayerBonus
@@ -110,6 +112,10 @@ public class Player : MonoBehaviour
     {
         points -= pts;
         textPoints.text = pointsStart + " " + points;
+    }
+    public void PlayBarrierSound()
+    {
+        BarrierBuildSfx.Play();
     }
 
 }

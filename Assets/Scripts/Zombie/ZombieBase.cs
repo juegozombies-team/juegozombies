@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
@@ -24,6 +22,7 @@ public class ZombieBase : MonoBehaviour
 
     [SerializeField] private int zombieDamage = 1;
     private bool destroyingBarricade = false;
+    private RoundManager rm;
 
     // private float timerPos = 0f;
 
@@ -32,7 +31,8 @@ public class ZombieBase : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").GetComponent<Player>();
         playerTransform = GameObject.Find("Player").GetComponentInParent<Transform>();
-        // SetHealthBasedOnRound(rm.currentRound);
+        rm = GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>();
+        health = rm.SetHealthBasedOnRound();
     }
 
 
@@ -101,6 +101,7 @@ public class ZombieBase : MonoBehaviour
     private void Despawn()
     {
         if(destroyingBarricade) ultimabarricada.zombiesClose--;
+        rm.removeZombie(this);
         Destroy(gameObject);
     }
 
@@ -158,14 +159,6 @@ public class ZombieBase : MonoBehaviour
         timerPos = 0f;
         return true;
     }
-    
-
-    private void SetHealthBasedOnRound(int roundNumber)
-    {
-        health = 10f + 2 * roundNumber + roundNumber - 1;
-    }
-    
-
     
     private void Respawn()
     {
