@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class Door : Interaction
 {
@@ -9,6 +10,7 @@ public class Door : Interaction
         base.Start();
         fullString = "Abrir Puerta (" + puntosRequeridos + ") (E)";
     }
+
     protected override void Interactuar()
     {
         if (player.points >= puntosRequeridos)

@@ -16,6 +16,7 @@ public abstract class BaseMachine : Interaction
     {
         base.Update();
     }
+
     protected override void Interactuar()
     {
         if (player.points >= puntosRequeridos)

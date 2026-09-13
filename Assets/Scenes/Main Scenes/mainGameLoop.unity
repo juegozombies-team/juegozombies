@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -79.44716, w: 0}
+  m_margin: {x: -4.5914, y: 0, z: -79.44716, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2679,6 +2679,10 @@ PrefabInstance:
     - target: {fileID: 4255548958782997022, guid: 5deba1352384b3543b39de13e444e4a3, type: 3}
       propertyPath: m_Name
       value: Barricadas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456349388855727464, guid: 5deba1352384b3543b39de13e444e4a3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8396010618126026370, guid: 5deba1352384b3543b39de13e444e4a3, type: 3}
       propertyPath: m_LocalPosition.x

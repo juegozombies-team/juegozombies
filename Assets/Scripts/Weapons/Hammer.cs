@@ -30,7 +30,7 @@ public class Hammer : MonoBehaviour
         if (timeLeft <= 0)
         {
             isOnCooldown = false;
-            HammerText.text = " Hammer: Ready";
+            HammerText.text = "Hammer: Ready";
 
         }
         else
