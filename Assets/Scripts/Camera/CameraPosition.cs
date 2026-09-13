@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CameraPosition : MonoBehaviour
 {
@@ -47,9 +45,16 @@ public class CameraPosition : MonoBehaviour
         Quaternion rotar_newPos = Quaternion.Euler(camara.transform.eulerAngles.x,player.transform.eulerAngles.y,0);
 
         Vector3 new_camPosOffset = new Vector3(camPosOffset.x,camPosOffset.y,-1.8f / Mathf.Max(1,Mathf.Abs(newDesiredAngleY/20)));
-        //pivoti.transform.position;
-        
         transform.position = player.transform.position + rotar_newPos*new_camPosOffset;
+
+        Vector3 difference = transform.position - pivoti.transform.position;
+        float difLength = difference.magnitude;
+        RaycastHit hitInfo;
+        if(Physics.Raycast(pivoti.transform.position, difference, out hitInfo, 3f, coll))
+        {
+            transform.position = hitInfo.point-(difference/10);
+        }
+        
         camara.transform.position = Vector3.Lerp(camara.transform.position, transform.position, Time.deltaTime * camSpeed);
     }
 

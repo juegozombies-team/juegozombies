@@ -16,6 +16,7 @@ public class playerAmmunition : MonoBehaviour
     [SerializeField] private int ammoQuantity = 50;
     [SerializeField] private TextMeshProUGUI ammoText;
     private PlayerInputs pi;
+    [SerializeField] private LayerMask coll;
 
     private int ammoUsed;
     private int ammoCurrent;
@@ -55,7 +56,7 @@ public class playerAmmunition : MonoBehaviour
         Vector3 origin = cameraPos.transform.position;
         Vector3 direction = cameraPos.transform.forward;
 
-        if (Physics.Raycast(origin, direction, out hit, raycastDistance))
+        if (Physics.Raycast(origin, direction, out hit, raycastDistance, coll))
         {
             if (hit.collider.CompareTag("ZombieBody"))
             {
