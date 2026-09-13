@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7632704234923664719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tablas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6405812024810396706}
   - component: {fileID: 5705008835350078144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombiepos
   m_TagString: ZombieBarricade
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5223748340341158221}
   - component: {fileID: 4161811074484285410}
   - component: {fileID: 536622099312523022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barricade2
   m_TagString: Barricade
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4554961687733650359}
   - component: {fileID: 4456349388855727464}
   - component: {fileID: 1870924759292438197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tablassad 1
   m_TagString: Interaction
   m_Icon: {fileID: 0}
@@ -255,8 +255,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 1.4968917, z: 1.3728768}
-  m_Center: {x: -0.6900001, y: -0.38681185, z: -0.029999968}
+  m_Size: {x: 0.5, y: 1.4968917, z: 1}
+  m_Center: {x: -0.41, y: -0.38681185, z: 0}
 --- !u!114 &1870924759292438197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 1012736845812177104}
   - component: {fileID: 4430846900783169035}
   - component: {fileID: 3893416321729068173}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barricade4
   m_TagString: Barricade
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 97804626474873203}
   - component: {fileID: 8326917519513293163}
   - component: {fileID: 7122077339662840219}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barricade1
   m_TagString: Barricade
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 6006640520454044488}
   - component: {fileID: 1540063693187069515}
   - component: {fileID: 9137664568173809192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barricade5
   m_TagString: Barricade
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 3857141846635384427}
   - component: {fileID: 7777285990166765076}
   - component: {fileID: 8618716322647183386}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barricade3
   m_TagString: Barricade
   m_Icon: {fileID: 0}

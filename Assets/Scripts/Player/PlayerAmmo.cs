@@ -17,6 +17,15 @@ public class playerAmmunition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     private PlayerInputs pi;
     [SerializeField] private LayerMask coll;
+    [SerializeField] private ParticleSystem ps;
+    private ParticleSystemRenderer psR;
+
+    [Header("Materiales")]
+    [SerializeField] private Material materialGenerico;
+    [SerializeField] private Material materialZombieHit;
+
+    [Header("Sonido")]
+    [SerializeField] private AudioSource ShootSfx;
 
     private int ammoUsed;
     private int ammoCurrent;
@@ -30,6 +39,7 @@ public class playerAmmunition : MonoBehaviour
     private void Start()
     {
         pi = gameObject.GetComponent<PlayerInputs>();
+        psR = ps.GetComponent<ParticleSystemRenderer>();
     }
 
 
@@ -55,16 +65,19 @@ public class playerAmmunition : MonoBehaviour
         RaycastHit hit;
         Vector3 origin = cameraPos.transform.position;
         Vector3 direction = cameraPos.transform.forward;
-
+        psR.material = materialGenerico;
+        ShootSfx.Play();
         if (Physics.Raycast(origin, direction, out hit, raycastDistance, coll))
         {
+            ps.transform.position = hit.point;
+            ps.Play();
             if (hit.collider.CompareTag("ZombieBody"))
             {
                 
                 ZombieBase zombie = hit.collider.GetComponent<ZombieBase>();
 
                 zombie.ReceiveDamage(false, gunDamage);
-
+                psR.material = materialZombieHit;
             }
 
             if(hit.collider.CompareTag("ZombieHead"))
@@ -73,6 +86,7 @@ public class playerAmmunition : MonoBehaviour
                 ZombieBase zombie = hit.collider.GetComponentInParent<ZombieBase>();
 
                 zombie.ReceiveDamage(true, gunDamage);
+                psR.material = materialZombieHit;
 
             }
 

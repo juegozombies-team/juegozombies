@@ -11,7 +11,8 @@ public class SpawnerZombie : MonoBehaviour
 
     void Start()
     {
-        zombieSpawnTimer = zombieSpawnCooldown;
+        zombieSpawnTimer = zombieSpawnCooldown - Random.Range(0f,5f);
+
     }
 
     void Update()
