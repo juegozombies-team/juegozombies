@@ -4,13 +4,12 @@ public abstract class BaseMachine : Interaction
 {
     protected Inventory inventory;
     protected AudioSource SFX_FaltaPlata;
-    protected int cost;
 
     protected abstract void Buy();
     protected override void Start()
     {
         base.Start();
-        SFX_FaltaPlata = GetComponent<AudioSource>();
+        //SFX_FaltaPlata = GetComponent<AudioSource>();
     }
 
     protected override void Update()
@@ -19,13 +18,14 @@ public abstract class BaseMachine : Interaction
     }
     protected override void Interactuar()
     {
-        if (player.points > cost)
+        if (player.points >= puntosRequeridos)
         {
             Buy();
+            player.RemovePoints(puntosRequeridos);
         }
         else
         {
-            SFX_FaltaPlata.Play();
+            //SFX_FaltaPlata.Play();
         }
     }
 }

@@ -7,12 +7,20 @@ public class Door : Interaction
     protected override void Start()
     {
         base.Start();
-        fullString = "Open";
+        fullString = "Abrir Puerta (" + puntosRequeridos + ") (E)";
     }
     protected override void Interactuar()
     {
-        Destroy(gameObject);
-        textoInteraccion.gameObject.SetActive(false);
+        if (player.points >= puntosRequeridos)
+        {
+            player.RemovePoints(puntosRequeridos);
+            Destroy(gameObject);
+            textoInteraccion.gameObject.SetActive(false);
+        }
+        else
+        {
+            //SFX_FaltaPlata.Play();
+        }
     }
 
 }

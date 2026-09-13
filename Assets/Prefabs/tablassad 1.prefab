@@ -188,9 +188,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8396010618126026370}
-  - component: {fileID: 1870924759292438197}
   - component: {fileID: 4554961687733650359}
   - component: {fileID: 4456349388855727464}
+  - component: {fileID: 1870924759292438197}
   m_Layer: 0
   m_Name: tablassad 1
   m_TagString: Interaction
@@ -215,30 +215,6 @@ Transform:
   - {fileID: 6405812024810396706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -88.988, z: 0}
---- !u!114 &1870924759292438197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255548958782997022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac22e932fb36a814c98dd7da21e1d6ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Barricade
-  puntosRequeridos: 0
-  usoUnico: 0
-  textoInteraccion: {fileID: 0}
-  barricades:
-  - {fileID: 5796194581078392234}
-  - {fileID: 3443300600570403196}
-  - {fileID: 8942150311310939402}
-  - {fileID: 5155054578799586184}
-  - {fileID: 7083184327724912314}
-  ColliderPrincipal: {fileID: 4554961687733650359}
-  delayBarricada: 0.5
-  zombiesClose: 0
 --- !u!65 &4554961687733650359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -281,6 +257,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0864655, y: 1.4968917, z: 1.3728768}
   m_Center: {x: -0.6900001, y: -0.38681185, z: -0.029999968}
+--- !u!114 &1870924759292438197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255548958782997022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac22e932fb36a814c98dd7da21e1d6ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Barricade
+  puntosRequeridos: 0
+  usoUnico: 0
+  textoInteraccion: {fileID: 0}
+  barricades:
+  - {fileID: 5796194581078392234}
+  - {fileID: 3443300600570403196}
+  - {fileID: 8942150311310939402}
+  - {fileID: 5155054578799586184}
+  - {fileID: 7083184327724912314}
+  ColliderPrincipal: {fileID: 4554961687733650359}
+  delayBarricada: 0.5
+  zombiesClose: 0
 --- !u!1 &5155054578799586184
 GameObject:
   m_ObjectHideFlags: 0

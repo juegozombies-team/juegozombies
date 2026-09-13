@@ -13,22 +13,20 @@ public class Barricade : Interaction
     private int barricadasRestantes = 5;
     public int zombiesClose = 0;
 
+    protected override void Start()
+    {
+        base.Start();
+        textoInteraccion.text = "Reparar Barricada";
+    }
     protected override void Update()
     {
         if (jugadorDentro)
         {
-            textoInteraccion.text = fullString;
-            textoInteraccion.gameObject.SetActive(true);
             if (pi.interactAction.IsPressed())
             {
                 Interactuar();
             }
         }
-        else
-        {
-            textoInteraccion.gameObject.SetActive(false);
-        }
-
         if (zombiesClose > 0)
         {
             SacarBarricada();
@@ -90,7 +88,7 @@ public class Barricade : Interaction
             ColliderPrincipal.enabled = false;
             isOpen = true;
         }
-        yield return new WaitForSeconds(delayBarricada/3f);
+        yield return new WaitForSeconds(delayBarricada/2f);
 
 
         cycle = false;

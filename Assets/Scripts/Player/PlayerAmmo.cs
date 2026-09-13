@@ -110,5 +110,6 @@ public class playerAmmunition : MonoBehaviour
     public void GainAmmo(int gainedAmmo)
     {
         ammoQuantity += gainedAmmo;
+        ammoText.text = ammoTextStart + " " + ammoCurrent + " / " + ammoQuantity;
     }
 }

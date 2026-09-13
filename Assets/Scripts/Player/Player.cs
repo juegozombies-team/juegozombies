@@ -106,5 +106,10 @@ public class Player : MonoBehaviour
         points += pts;
         textPoints.text = pointsStart + " " + points;
     }
+    public void RemovePoints(int pts)
+    {
+        points -= pts;
+        textPoints.text = pointsStart + " " + points;
+    }
 
 }

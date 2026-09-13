@@ -12,30 +12,20 @@ public abstract class Interaction : MonoBehaviour
     protected bool jugadorDentro = false;
     protected Player player;
     [SerializeField] protected TextMeshProUGUI textoInteraccion;
-    protected String endOfString = " (E)";
     protected String fullString = "";
 
 
     protected virtual void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        pi = GameObject.FindWithTag("Player").GetComponent<PlayerInputs>();
+        pi = player.gameObject.GetComponent<PlayerInputs>();
     }
 
     protected virtual void Update()
     {
         if (jugadorDentro)
         {
-            textoInteraccion.text = "la casa de mickey mouse";
-            textoInteraccion.gameObject.SetActive(true);
-            if (pi.interactAction.WasPressedThisFrame())
-            {
-                Interactuar();
-            }
-        }
-        else
-        {
-            textoInteraccion.gameObject.SetActive(false);
+            if (pi.interactAction.WasPressedThisFrame()) Interactuar();
         }
     }
 
@@ -44,9 +34,12 @@ public abstract class Interaction : MonoBehaviour
     public virtual void PlayerEntered()
     {
         jugadorDentro = true;
+        textoInteraccion.text = fullString;
+        textoInteraccion.gameObject.SetActive(true);
     }
     public virtual void PlayerExit()
     {
         jugadorDentro = false;
+        textoInteraccion.gameObject.SetActive(false);
     }
 }

@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour
         }
     }
     private Item[] currentInventory;
-    private int equippedSlot = 0;
+    //private int equippedSlot = 0;
 
     void Start()
     {
@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
 
     public void ResetInventory()
     {
-        equippedSlot = 0;
+        //equippedSlot = 0;
         currentInventory = new Item[9];
         currentInventory[0] = Item.M1911;
         currentInventory[1] = Item.startingAmmo;
