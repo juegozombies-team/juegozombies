@@ -23,6 +23,7 @@ public class ZombieBase : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
 
     [SerializeField] private int zombieDamage = 1;
+    private bool destroyingBarricade = false;
 
     // private float timerPos = 0f;
 
@@ -99,8 +100,8 @@ public class ZombieBase : MonoBehaviour
 
     private void Despawn()
     {
+        if(destroyingBarricade) ultimabarricada.zombiesClose--;
         Destroy(gameObject);
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -117,6 +118,7 @@ public class ZombieBase : MonoBehaviour
         if (other.CompareTag("ZombieBarricade")){ 
             ultimabarricada=other.GetComponentInParent<Barricade>();
             ultimabarricada.zombiesClose++;
+            destroyingBarricade = true;
         }
     }
     public void OnTriggerExit(Collider other)
@@ -124,6 +126,7 @@ public class ZombieBase : MonoBehaviour
         if (other.CompareTag("ZombieBarricade"))
         {
             ultimabarricada.zombiesClose--;
+            destroyingBarricade = false;
         }
     }
 

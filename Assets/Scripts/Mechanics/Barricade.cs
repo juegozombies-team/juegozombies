@@ -16,12 +16,13 @@ public class Barricade : Interaction
     protected override void Start()
     {
         base.Start();
+        fullString = "Reparar Barricada (E)";
     }
     protected override void Update()
     {
         if (jugadorDentro)
         {
-            textoInteraccion.text = "Reparar Barricada (E)";
+            textoInteraccion.text = fullString;
 
             if (pi.interactAction.IsPressed())
             {
