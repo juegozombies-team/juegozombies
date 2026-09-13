@@ -1849,7 +1849,7 @@ MonoBehaviour:
   materialGenerico: {fileID: 2100000, guid: 339a08f372e0c174697772bb3778b054, type: 2}
   materialZombieHit: {fileID: 2100000, guid: 9dad342eb7181ab46bec85813f91a10b, type: 2}
   ShootSfx: {fileID: 153053061}
-  EmptyMagSfx: {fileID: 1717935547}
+  EmptyMagSfx: {fileID: 1843296159}
   ReloadSfx: {fileID: 1843296159}
 --- !u!114 &1161843252
 MonoBehaviour:
@@ -1972,7 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f00edae549eb754daab8ce864a0a046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hammer
-  hammerRadius: 5.5
+  hammerRadius: 4
   coolDown: 15
   isOnCooldown: 1
   HammerText: {fileID: 1331257593}
@@ -8096,7 +8096,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 978a4e2b32e4f994689f522aedd12288, type: 3}
+  m_Resource: {fileID: 8300000, guid: efbca229fc5672c469f9b6cfbaf720d3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.806
   m_Pitch: 1
