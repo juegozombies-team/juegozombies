@@ -17,7 +17,6 @@ public class Hammer : MonoBehaviour
     void Awake()
     {
         cooldownTimer = coolDown;
-        cooldownTimer = 0;
         lastTimeLeft = -1;
     }
 
