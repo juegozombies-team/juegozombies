@@ -141,6 +141,7 @@ public class ZombieBase : MonoBehaviour
     }
     public void ReceiveDamage(bool isHeadshot, float damage)
     {
+        if (health <= 0) return;
         if (isHeadshot)
         {
             if (player.HasPowerUp(Player.PlayerBonus.HeadShots))
@@ -191,7 +192,10 @@ public class ZombieBase : MonoBehaviour
 
     private void Despawn()
     {
-        if(destroyingBarricade) ultimabarricada.zombiesClose--;
+        if (ultimabarricada != null)
+        {
+            if (destroyingBarricade) { ultimabarricada.zombiesClose--; }
+        }
         rm.RemoveZombie(this);
         pus.Spawn();
         Destroy(gameObject);
@@ -255,8 +259,11 @@ public class ZombieBase : MonoBehaviour
     {
         if (other.CompareTag("ZombieBarricade"))
         {
-            ultimabarricada.zombiesClose--;
-            destroyingBarricade = false;
+            if (health > 0)
+            {
+                ultimabarricada.zombiesClose--;
+                destroyingBarricade = false;
+            }
         }
     }
     public void goTo( Vector3 position)

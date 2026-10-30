@@ -36,7 +36,7 @@ public class Barricade : Interaction
     }
     protected override void Update()
     {
-        if(jugadorDentro)
+        if (jugadorDentro)
         {
             if (barricadasRestantes < barricades.Length)
             {
@@ -72,7 +72,7 @@ public class Barricade : Interaction
     {
         if (!cycle && barricadasRestantes > 0)
         {
-            
+
             StartCoroutine(ZombieCorrutine());
         }
     }
@@ -87,7 +87,7 @@ public class Barricade : Interaction
             {
                 barricades[i].SetActive(true);
                 barricadasRestantes++;
-                break; 
+                break;
             }
         }
 
@@ -107,7 +107,7 @@ public class Barricade : Interaction
             {
                 barricades[i].SetActive(false);
                 barricadasRestantes--;
-                break; 
+                break;
             }
         }
         if (barricadasRestantes <= 0 && ColliderPrincipal != null)
@@ -119,7 +119,7 @@ public class Barricade : Interaction
         {
             animZombie.Play("attack");
         }
-        yield return new WaitForSeconds(delayBarricada/2f);
+        yield return new WaitForSeconds(delayBarricada / 2f);
 
 
         cycle = false;
@@ -139,6 +139,18 @@ public class Barricade : Interaction
         {
             textoInteraccion.text = fullString;
             textoInteraccion.gameObject.SetActive(true);
+        }
+    }
+
+    override public void PlayerStay()
+    {
+        if (barricadasRestantes < barricades.Length)
+        {
+            textoInteraccion.text = fullString;
+            textoInteraccion.gameObject.SetActive(true);
+        } else
+        {
+            textoInteraccion.gameObject.SetActive(false);
         }
     }
 }
