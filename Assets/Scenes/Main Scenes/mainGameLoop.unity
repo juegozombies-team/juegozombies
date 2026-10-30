@@ -10143,6 +10143,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121202180}
   m_CullTransparentMesh: 1
+--- !u!1 &1155914943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155914944}
+  - component: {fileID: 1155914945}
+  m_Layer: 0
+  m_Name: NavMesh Link Barandilla
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155914944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155914943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.903, y: 0, z: 2.193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1717090164}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155914945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155914943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshLink
+  m_SerializedVersion: 1
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0.066028595, y: -0.04345727, z: -1.5396061}
+  m_EndPoint: {x: 0.016010284, y: -2.1052933, z: 0.21648622}
+  m_StartTransform: {fileID: 0}
+  m_EndTransform: {fileID: 0}
+  m_Activated: 1
+  m_Width: 0
+  m_CostModifier: 1
+  m_IsOverridingCost: 0
+  m_Bidirectional: 0
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &1157116152
 GameObject:
   m_ObjectHideFlags: 0
@@ -20581,7 +20638,7 @@ MonoBehaviour:
   RoundPassSFX: {fileID: 1427816976}
   ZombieSpawnerMain: {fileID: 1317247690}
   roundText: {fileID: 2053374351}
-  zombieObj: {fileID: 0}
+  zombieObj: {fileID: 7277187663294482894, guid: 4a61699035a569a47af3c6c2cdcbd698, type: 3}
   mapActivity: 0
 --- !u!4 &2079259454
 Transform:
@@ -21312,6 +21369,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7815235950524561671, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1463839506}
+    - targetCorrespondingSourceObject: {fileID: 7815235950524561671, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1155914944}
     - targetCorrespondingSourceObject: {fileID: 7815235950524561671, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 117476800}
