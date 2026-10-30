@@ -110,7 +110,7 @@ public class ZombieBase : MonoBehaviour
 
         Vector3 diff = playerTransform.position - transform.position;
 
-        if (diff.magnitude <= attackRange)
+        if (diff.magnitude <= attackRange && !playerHealth.IsDying)
         {
             StartCoroutine(Attack(playerHealth));
         }

@@ -1,7 +1,10 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
-    
+
     [SerializeField] private int healthMax = 6;
     [SerializeField] private float invulnTime = 0.75f;
 
@@ -12,9 +15,15 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsInvulnerable => 0 < invulnUntil;
 
+    private bool isDying = false;
+
+    public bool IsDying => isDying;
+    private Animator anim;
+
     private void Start()
     {
         health = healthMax;
+        anim = GetComponentInChildren<Animator>();
         healthBar = GetComponent<HealthBar>();
         player = GetComponent<Player>();
     }
@@ -22,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     public void GainHealth(int bonusHealth)
     {
         health += bonusHealth;
-        if (health > healthMax) 
+        if (health > healthMax)
         {
             health = healthMax;
         }
@@ -48,6 +57,26 @@ public class PlayerHealth : MonoBehaviour
 
         health = Mathf.Max(0, health - damage);
         healthBar.OnHealthChange(health);
+        if (health <= 0)
+        {
+            StartCoroutine(Dead());
+
+        }
+    }
+
+    private IEnumerator Dead()
+    {
+        isDying = true;
+        anim.Play("Died", 0, 0f);
+        anim.SetLayerWeight(1, 0f);
+
+        yield return new WaitForEndOfFrame();
+
+        float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
+
+        yield return new WaitForSeconds(animationLength);
+
+        SceneManager.LoadScene("GameOverScene");
     }
 }
 

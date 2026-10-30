@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActionsAsset;
-    [SerializeField] private static float moveSpeed = 3f;
+    [SerializeField] private static float moveSpeed = 4f;
     private float wingsSpeed = moveSpeed * 1.5f;
     private float superSpeed = moveSpeed * 1.7f;
     [SerializeField] private float gravity = -9.8f;
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         }
         if (isGrounded)
         {
+            if (!ph.IsDying) { anim.SetLayerWeight(1, 1f); }
             anim.SetBool("IsGrounded", true);
             playerMovement = pi.moveAction.ReadValue<Vector2>();
             bool hasSpeed = activePerks[(int)PlayerPerks.Speed];
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour
             if (!hasSpeed && !hasWings) currentSpeed = moveSpeed;
             else if ((hasSpeed && !hasWings) || (!hasSpeed && hasWings)) currentSpeed = wingsSpeed;
             else (currentSpeed) = superSpeed;
+            if (ph.IsDying) { currentSpeed = 0; }
             horizontalMovement = Mathf.MoveTowards(horizontalMovement, playerMovement.x * currentSpeed, friction * Time.deltaTime);
             forwardMovement = Mathf.MoveTowards(forwardMovement, playerMovement.y * currentSpeed, friction * Time.deltaTime); verticalMovement = -2f;
             anim.SetFloat("Xspeed", horizontalMovement);
@@ -116,6 +118,7 @@ public class Player : MonoBehaviour
         } 
         else
         {
+            anim.SetLayerWeight(1, 0f);
             anim.SetBool("IsGrounded", false);
             verticalMovement += gravity * Time.deltaTime;
             playerMovement = new Vector3(0, verticalMovement, 0);

@@ -73,7 +73,7 @@ public class HealthBar : MonoBehaviour
     {
         playerHealth.health = health;
         float healthPercent = health / 6f;
-        if (health <= 0)
+        if (health <= 0 && player.activePerks[3])
         {
             OnDeath();
             return;

@@ -34,6 +34,7 @@ public class PlayerShoot : MonoBehaviour
     //----- NUEVO CODIGO ----- Índice del arma que sostenías antes de la actual
     private Inventory.itemIndex lastWeapon = Inventory.itemIndex.None;
 
+    private PlayerHealth ph;
     private Animator anim;
 
     //----- NUEVO CODIGO -----
@@ -57,6 +58,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Start()
     {
+        ph = GetComponent<PlayerHealth>();
         anim = GetComponentInChildren<Animator>();
         pi = gameObject.GetComponent<PlayerInputs>();
         EquipWeapon(inventory.EquippedWeapon);
@@ -126,19 +128,19 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (pi.inventoryAction.WasPressedThisFrame())
+        if (pi.inventoryAction.WasPressedThisFrame() && !ph.IsDying)
         {
             ToggleInventory();
         }
 
         if (inventoryOpen) return;
         //----- NUEVO CODIGO ----- Al apretar Q (LastWeapon) vuelve al arma anterior
-        if (pi.lastWeaponAction.WasPressedThisFrame())
+        if (pi.lastWeaponAction.WasPressedThisFrame() && !ph.IsDying)
         {
             EquipLastWeapon();
         }
         //----- NUEVO CODIGO -----
-        if (gun != null)
+        if (gun != null && !ph.IsDying)
          {
             bool inputShoot;
             shootTimer += Time.deltaTime;

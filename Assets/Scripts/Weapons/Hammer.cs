@@ -10,6 +10,8 @@ public class Hammer : MonoBehaviour
     [SerializeField] private RawImage hammerImage;
     [SerializeField] private TextMeshProUGUI HammerText;
     [SerializeField] private PlayerInputs pi;
+
+    private PlayerHealth ph;
     private Color originalColor;
     private float cooldownTimer;
     private int timeLeft;
@@ -17,6 +19,7 @@ public class Hammer : MonoBehaviour
     void Awake()
     {
         pi = GetComponent<PlayerInputs>();
+        ph = GetComponent<PlayerHealth>();
         cooldownTimer = coolDown;
         lastTimeLeft = -1;
 
@@ -62,7 +65,7 @@ public class Hammer : MonoBehaviour
             }
         }
 
-        if (pi.skillAction.WasPressedThisFrame())
+        if (pi.skillAction.WasPressedThisFrame() && !ph.IsDying)
         {
             if (!isOnCooldown)
             {

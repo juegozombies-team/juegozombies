@@ -7,7 +7,6 @@ public class Barricade : Interaction
     [SerializeField] private GameObject[] barricades;
     [SerializeField] private Collider ColliderPrincipal;
     [SerializeField] private float delayBarricada = 3f;
-
     public bool isOpen { get; private set; } = false;
     private bool cycle = false;
 
@@ -43,7 +42,7 @@ public class Barricade : Interaction
             {
                 textoInteraccion.gameObject.SetActive(true);
 
-                if (pi.interactAction.IsPressed())
+                if (pi.interactAction.IsPressed() && !ph.IsDying)
                 {
                     Interactuar();
                 }
