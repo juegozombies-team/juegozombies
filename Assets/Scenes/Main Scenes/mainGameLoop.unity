@@ -142,9 +142,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.09
   weaponIndex: 6
   shootScript: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 4
   isAutomatic: 1
-  boomRadius: 1
+  boomRadius: 0.5
 --- !u!1 &35358649
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,9 +395,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.1
   weaponIndex: 7
   shootScript: {fileID: 0}
@@ -412,7 +412,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 5
   isAutomatic: 1
-  boomRadius: 1
+  boomRadius: 0.5
 --- !u!4 &79992278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6073695071421222171, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
@@ -1048,14 +1048,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 734481425}
     m_Modifications:
+    - target: {fileID: 3259263458476195596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: m_Name
+      value: Texto (B)
+      objectReference: {fileID: 0}
     - target: {fileID: 4059323923924282965, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Name
-      value: MaquinaArmas (1)
+      value: MaquinaArmas (B)
       objectReference: {fileID: 0}
     - target: {fileID: 4822490891637465596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_Comprar
+      value: 
+      objectReference: {fileID: 420958533706934414}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: givenWeapon
       value: 9
@@ -1064,6 +1072,10 @@ PrefabInstance:
       propertyPath: textPurchase
       value: 
       objectReference: {fileID: 1263104849}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_FaltaPlata
+      value: 
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: puntosRequeridos
       value: 600
@@ -1866,9 +1878,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.11
   weaponIndex: 4
   shootScript: {fileID: 0}
@@ -1883,7 +1895,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 2
   isAutomatic: 1
-  boomRadius: 1
+  boomRadius: 0.5
 --- !u!1 &489635027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,9 +2429,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.7
   weaponIndex: 5
   shootScript: {fileID: 0}
@@ -2434,7 +2446,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 3
   isAutomatic: 0
-  boomRadius: 1
+  boomRadius: 0.5
 --- !u!1 &649945484 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6846187932142123102, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
@@ -3696,9 +3708,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.25
   weaponIndex: 2
   shootScript: {fileID: 0}
@@ -3713,7 +3725,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 1
   isAutomatic: 0
-  boomRadius: 1
+  boomRadius: 0.5
   bulletsPerBurst: 3
   burstInterval: 0.1
 --- !u!1 &899118514
@@ -9364,14 +9376,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 734481425}
     m_Modifications:
+    - target: {fileID: 3259263458476195596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: m_Name
+      value: Texto (A)
+      objectReference: {fileID: 0}
     - target: {fileID: 4059323923924282965, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Name
-      value: MaquinaArmas
+      value: MaquinaArmas (A)
       objectReference: {fileID: 0}
     - target: {fileID: 4822490891637465596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_Comprar
+      value: 
+      objectReference: {fileID: 420958533706934414}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: givenWeapon
       value: 2
@@ -9380,6 +9400,10 @@ PrefabInstance:
       propertyPath: textPurchase
       value: 
       objectReference: {fileID: 1263104849}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_FaltaPlata
+      value: 
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: puntosRequeridos
       value: 400
@@ -9512,6 +9536,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020315597}
   m_CullTransparentMesh: 1
+--- !u!198 &1039225194 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7607302661971389518, guid: efc474e4eefb38a4db2190825ab6e8d7, type: 3}
+  m_PrefabInstance: {fileID: 447383704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1050993478
 GameObject:
   m_ObjectHideFlags: 0
@@ -12284,6 +12313,11 @@ MonoBehaviour:
   m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!198 &1490399479 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8157500036445327597, guid: efc474e4eefb38a4db2190825ab6e8d7, type: 3}
+  m_PrefabInstance: {fileID: 447383704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1491076215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12388,8 +12422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1012.6, y: -813.5}
-  m_SizeDelta: {x: 412.7, y: 50}
+  m_AnchoredPosition: {x: 996.3, y: -812.99}
+  m_SizeDelta: {x: 536.279, y: 73.972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1495732276
 MonoBehaviour:
@@ -13194,14 +13228,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 734481425}
     m_Modifications:
+    - target: {fileID: 3259263458476195596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: m_Name
+      value: Texto (C)
+      objectReference: {fileID: 0}
     - target: {fileID: 4059323923924282965, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Name
-      value: MaquinaArmas (2)
+      value: MaquinaArmas (C)
       objectReference: {fileID: 0}
     - target: {fileID: 4822490891637465596, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_Comprar
+      value: 
+      objectReference: {fileID: 420958533706934414}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: givenWeapon
       value: 7
@@ -13210,6 +13252,10 @@ PrefabInstance:
       propertyPath: textPurchase
       value: 
       objectReference: {fileID: 1263104849}
+    - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
+      propertyPath: SFX_FaltaPlata
+      value: 
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: 4926447371646258677, guid: fc9d1e1220146f841a132a2938437f22, type: 3}
       propertyPath: puntosRequeridos
       value: 1200
@@ -13312,9 +13358,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.13
   weaponIndex: 3
   shootScript: {fileID: 0}
@@ -13329,7 +13375,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 2
   isAutomatic: 1
-  boomRadius: 1
+  boomRadius: 0.5
 --- !u!1 &1667936311
 GameObject:
   m_ObjectHideFlags: 0
@@ -13821,6 +13867,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8873465942729012203, guid: 5feb5cf3c7b8ec4448c16e3b152d8dd6, type: 3}
+--- !u!198 &1734404869 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 255480334820732326, guid: efc474e4eefb38a4db2190825ab6e8d7, type: 3}
+  m_PrefabInstance: {fileID: 447383704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1743279263
 GameObject:
   m_ObjectHideFlags: 0
@@ -19068,9 +19119,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.6
   weaponIndex: 9
   shootScript: {fileID: 0}
@@ -19085,7 +19136,7 @@ MonoBehaviour:
   maxPitchShift: 1.15
   animIndex: 6
   isAutomatic: 0
-  boomRadius: 1
+  boomRadius: 0.5
   raycastCount: 8
   spreadAngle: 3
   rotationPerShot: 13
@@ -19509,9 +19560,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   psExplosiveAmmo:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1734404869}
+  - {fileID: 1490399479}
+  - {fileID: 1039225194}
   shootTime: 0.1
   weaponIndex: 1
   shootScript: {fileID: 0}
@@ -20659,7 +20710,7 @@ PrefabInstance:
     - target: {fileID: 3615776701375964947, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       propertyPath: SFX_Comprar
       value: 
-      objectReference: {fileID: 797326552692872588}
+      objectReference: {fileID: 420958533706934414}
     - target: {fileID: 3615776701375964947, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       propertyPath: textPurchase
       value: 
@@ -20667,7 +20718,7 @@ PrefabInstance:
     - target: {fileID: 3615776701375964947, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       propertyPath: SFX_FaltaPlata
       value: 
-      objectReference: {fileID: 797326552692872589}
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: 3615776701375964947, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       propertyPath: textoInteraccion
       value: 
@@ -20801,16 +20852,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
---- !u!82 &797326552692872588 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 177670639055387311, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
-  m_PrefabInstance: {fileID: 797326552692872587}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &797326552692872589 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2665040186096849775, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
-  m_PrefabInstance: {fileID: 797326552692872587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1751182922995054275
 Transform:
   m_ObjectHideFlags: 0
@@ -21210,9 +21251,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 734481425}
     m_Modifications:
     - target: {fileID: -1962106248256925180, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
+      propertyPath: SFX_Comprar
+      value: 
+      objectReference: {fileID: 420958533706934414}
+    - target: {fileID: -1962106248256925180, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
       propertyPath: textPurchase
       value: 
       objectReference: {fileID: 1263104849}
+    - target: {fileID: -1962106248256925180, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
+      propertyPath: SFX_FaltaPlata
+      value: 
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: -1962106248256925180, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
       propertyPath: puntosRequeridos
       value: 900
@@ -21245,9 +21294,13 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1759397563913096854, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.69
+      objectReference: {fileID: 0}
     - target: {fileID: 1814053394454670526, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
       propertyPath: m_text
-      value: Random Item
+      value: Random Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 2607506469320517494, guid: 9639f1a2f8bd132489c34077965714ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21310,9 +21363,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1263104849}
     - target: {fileID: -4814080708934774386, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
+      propertyPath: SFX_Comprar
+      value: 
+      objectReference: {fileID: 420958533706934414}
+    - target: {fileID: -4814080708934774386, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
       propertyPath: textPurchase
       value: 
       objectReference: {fileID: 1263104849}
+    - target: {fileID: -4814080708934774386, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
+      propertyPath: SFX_FaltaPlata
+      value: 
+      objectReference: {fileID: 7433419466059719595}
     - target: {fileID: -4814080708934774386, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
       propertyPath: textoInteraccion
       value: 
@@ -21320,6 +21381,10 @@ PrefabInstance:
     - target: {fileID: 1516614588075952682, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
       propertyPath: m_Name
       value: MaquinaMejoras
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343953363472528465, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5330146499585663806, guid: e6d509834efb41f43a10b929a30ac476, type: 3}
       propertyPath: m_text

@@ -5,7 +5,8 @@ using System.Linq;
 
 public class RandomWeaponMachine : BaseMachine
 {
-    private static Inventory.itemIndex[] armasPosibles = {
+    private static Inventory.itemIndex[] armasPosibles = 
+        {
         Inventory.itemIndex.M1911,
         Inventory.itemIndex.M93R,
         Inventory.itemIndex.MP5,
@@ -19,7 +20,7 @@ public class RandomWeaponMachine : BaseMachine
     protected override void Start()
     {
         base.Start();
-        fullString = "Random Gun Machine (" + PuntosRequeridos + ") (E)";
+        fullString = "Random weapon machine (" + PuntosRequeridos + ") (E)";
     }
 
     protected override void Buy()
@@ -35,7 +36,7 @@ public class RandomWeaponMachine : BaseMachine
         if (inventory.CheckFull())
         {
             player.AwardPoints(PuntosRequeridos);
-            StartCoroutine(VisualPurchase("Your Inventory is Full"));
+            StartCoroutine(VisualPurchase("Your inventory is full"));
             return;
         }
         
@@ -56,7 +57,7 @@ public class RandomWeaponMachine : BaseMachine
         SFX_Comprar.Play();
         StartCoroutine(VisualPurchase("You got: " + chosenWeapon));
 
-        // si ni te puede dar las balas porque tenes el inventario lleno, sale
+        // si no te puede dar las balas porque tenes el inventario lleno, sale
 
         if (inventory.CheckFull()) return;
 

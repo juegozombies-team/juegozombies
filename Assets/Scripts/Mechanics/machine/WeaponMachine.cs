@@ -7,21 +7,23 @@ public class WeaponMachine : BaseMachine
     protected override void Start()
     {
         base.Start();
-        fullString = "Buy Gun (" + PuntosRequeridos + ") (E)";
+        fullString = "Buy gun (" + PuntosRequeridos + ") (E)";
     }
 
     protected override void Buy()
     {
         if (inventory.GetAmount(givenWeapon) > 0)
         {
-            StartCoroutine(VisualPurchase("Bought Ammo"));
+            StartCoroutine(VisualPurchase("Bought ammo"));
             EntregarBalas();
             player.AwardPoints(PuntosRequeridos/2);
+            SFX_Comprar.Play();
         }
         else
         {
             EntregarArma();
             StartCoroutine(VisualPurchase("You got: " + givenWeapon));
+            SFX_Comprar.Play();
         }
     }
 

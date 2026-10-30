@@ -6,7 +6,7 @@ public class UpgradesMachine : BaseMachine
     protected override void Start()
     {
         base.Start();
-        fullString = "Buy Upgrade (" + PuntosRequeridos + ") (E)";
+        fullString = "Buy upgrade (" + PuntosRequeridos + ") (E)";
     }
 
     protected override void Buy()

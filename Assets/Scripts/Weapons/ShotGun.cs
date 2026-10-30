@@ -59,6 +59,11 @@ public class ShotGun : GunBehaviour
                 float explosiveDamage = gunDamage * 2;
                 Collider[] colliders = Physics.OverlapSphere(hit.point, boomRadius);
                 List<ZombieBase> currentZombie = new List<ZombieBase>();
+                foreach (ParticleSystem pse in psExplosiveAmmo)
+                {
+                    pse.transform.position = hit.point;
+                    pse.Play();
+                }
 
                 foreach (Collider hitCollider in colliders)
                 {
