@@ -21273,6 +21273,10 @@ PrefabInstance:
       value: GameMap
       objectReference: {fileID: 0}
     - target: {fileID: 2201059548682641898, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201059548682641898, guid: 9fb2a8b7e4aec76489a11c436b4f282a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
