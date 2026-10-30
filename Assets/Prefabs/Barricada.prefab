@@ -326,6 +326,9 @@ MonoBehaviour:
   puntosRequeridos: 0
   usoUnico: 0
   textoInteraccion: {fileID: 0}
+  textPurchase: {fileID: 0}
+  SFX_FaltaPlata: {fileID: 0}
+  SFX_Comprar: {fileID: 0}
   barricades:
   - {fileID: 5796194581078392234}
   - {fileID: 3443300600570403196}
