@@ -321,5 +321,19 @@ public class Inventory : MonoBehaviour
 
         OnInventoryChanged?.Invoke();
     }
-    //----- Codigo Borrado----- Todo lo relacionado a "DebugStartItem"
+    
+    
+    public bool FindAndFillFirst(itemIndex ammo)
+    {
+        for(int i = 0; i < SlotCount; i++)
+        {
+            Item cItem = actualInventory[i];
+            if (cItem.index == ammo && cItem.amount < GetLimit(cItem.index))
+            {
+                cItem.amount = GetLimit(cItem.index);
+                return true;
+            }
+        }
+        return false;
+    }
 }

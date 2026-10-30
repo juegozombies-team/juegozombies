@@ -15,21 +15,34 @@ public class WeaponMachine : BaseMachine
         if (inventory.CheckFull()){
             if (inventory.HasItem(Inventory.itemType.Ammo, Inventory.GetAmmoFor(givenWeapon)))
             {
-                
+                if (inventory.FindAndFillFirst(Inventory.GetAmmoFor(givenWeapon)))
+                {
+                    player.AwardPoints(PuntosRequeridos/2);
+                    SFX_Comprar.Play();
+                }
+                else
+                {
+                    player.AwardPoints(PuntosRequeridos);
+                    StartCoroutine(VisualPurchase("Inventory is Full"));
+                }
             }
+            else
+            {
+                player.AwardPoints(PuntosRequeridos);
+                StartCoroutine(VisualPurchase("Inventory is Full"));
+            }
+            return;
         }
         if (inventory.GetAmount(givenWeapon) > 0)
         {
             StartCoroutine(VisualPurchase("Bought ammo"));
             EntregarBalas();
             player.AwardPoints(PuntosRequeridos/2);
-            SFX_Comprar.Play();
         }
         else
         {
             EntregarArma();
             StartCoroutine(VisualPurchase("You got: " + givenWeapon));
-            SFX_Comprar.Play();
         }
         SFX_Comprar.Play();
     }
