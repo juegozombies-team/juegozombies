@@ -5815,7 +5815,7 @@ MonoBehaviour:
   criticalChance: 0.33
   healChance: 0.0667
   pus: {fileID: 2163085699649589148}
-  rotationSpeed: 10
+  attackRange: 1
   zombieDamage: 1
   ps: {fileID: 7298432569968053434}
   speedValues:
@@ -5860,6 +5860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieNavmesh
   repathInterval: 0.2
   waypointReachDistance: 1
+  rotationSpeed: 10
 --- !u!54 &4528784402512057155
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5896,7 +5897,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7277187663294482894}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
