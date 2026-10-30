@@ -162,6 +162,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Interaction"))
+        {
+            other.GetComponent<Interaction>().PlayerStay();
+        }
+    }
+
+
     private void ActivatePowerUp(PlayerBonus bonus)
     {
         if (bonus == PlayerBonus.MaxAmmo)

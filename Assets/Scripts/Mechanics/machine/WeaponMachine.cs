@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class WeaponMachine : BaseMachine
@@ -7,7 +8,7 @@ public class WeaponMachine : BaseMachine
     protected override void Start()
     {
         base.Start();
-        fullString = "Buy gun (" + PuntosRequeridos + ") (E)";
+        fullString = "Buy " + givenWeapon + " (" + PuntosRequeridos + ") (E)";
     }
 
     protected override void Buy()
@@ -23,13 +24,13 @@ public class WeaponMachine : BaseMachine
                 else
                 {
                     player.AwardPoints(PuntosRequeridos);
-                    StartCoroutine(VisualPurchase("Inventory is Full"));
+                    StartCoroutine(VisualPurchase("Inventory is full"));
                 }
             }
             else
             {
                 player.AwardPoints(PuntosRequeridos);
-                StartCoroutine(VisualPurchase("Inventory is Full"));
+                StartCoroutine(VisualPurchase("Inventory is full"));
             }
             return;
         }
@@ -37,7 +38,7 @@ public class WeaponMachine : BaseMachine
         {
             StartCoroutine(VisualPurchase("Bought ammo"));
             EntregarBalas();
-            player.AwardPoints(PuntosRequeridos/2);
+            player.AwardPoints(PuntosRequeridos / 2);
         }
         else
         {
@@ -45,6 +46,26 @@ public class WeaponMachine : BaseMachine
             StartCoroutine(VisualPurchase("You got: " + givenWeapon));
         }
         SFX_Comprar.Play();
+    }
+
+    public override void PlayerStay()
+    {
+        if (inventory.CheckFull())
+        {
+            fullString = "Your inventory is full";
+            textoInteraccion.text = fullString;
+            return;
+        }
+        if (inventory.GetAmount(givenWeapon) > 0)
+        {
+            fullString = "Buy ammo for " + givenWeapon + " (" + PuntosRequeridos / 2 + ") (E)";
+            textoInteraccion.text = fullString;
+        }
+        else
+        {
+            fullString = "Buy " + givenWeapon + " (" + PuntosRequeridos + ") (E)";
+            textoInteraccion.text = fullString;
+        }
     }
 
     private void EntregarArma()

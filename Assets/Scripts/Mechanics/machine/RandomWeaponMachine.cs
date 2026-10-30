@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using System.Linq;
 
@@ -71,6 +69,20 @@ public class RandomWeaponMachine : BaseMachine
             )
         );
         
+    }
+
+    public override void PlayerStay()
+    {
+        if (inventory.CheckFull())
+        {
+            fullString = "Your inventory is full";
+            textoInteraccion.text = fullString;
+        }
+        else
+        {
+            fullString = "Random weapon machine (" + PuntosRequeridos + ") (E)";
+            textoInteraccion.text = fullString;
+        }
     }
 
     // una verguenza esto

@@ -62,6 +62,11 @@ public abstract class Interaction : MonoBehaviour
         UpdatePriceText();
         textoInteraccion.gameObject.SetActive(true);
     }
+
+    public virtual void PlayerStay()
+    {
+
+    }
     public virtual void PlayerExit()
     {
         jugadorDentro = false;
