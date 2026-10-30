@@ -10336,7 +10336,6 @@ GameObject:
   - component: {fileID: 1161843258}
   - component: {fileID: 1161843251}
   - component: {fileID: 1161843252}
-  - component: {fileID: 1161843254}
   - component: {fileID: 1161843256}
   - component: {fileID: 1161843257}
   - component: {fileID: 1161843259}
@@ -10589,19 +10588,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!114 &1161843254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161843243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60724cada99a14b41b0530358f343f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOverScript
-  ph: {fileID: 1161843250}
 --- !u!114 &1161843256
 MonoBehaviour:
   m_ObjectHideFlags: 0
