@@ -12,7 +12,7 @@ public class RandomWeaponMachine : BaseMachine
         Inventory.itemIndex.MP5,
         Inventory.itemIndex.UZI,
         Inventory.itemIndex.RPG,
-        Inventory.itemIndex.Remington,
+        Inventory.itemIndex.M800,
         Inventory.itemIndex.AK47,
         Inventory.itemIndex.M4,
         Inventory.itemIndex.AWP,
@@ -43,7 +43,7 @@ public class RandomWeaponMachine : BaseMachine
         Inventory.itemIndex[] weaponPool = armasPosibles;
         Inventory.itemIndex[] currentWeapons = inventory.getAllWeapons(); 
         Inventory.itemIndex[] result = weaponPool.Except(currentWeapons).ToArray();
-        Inventory.itemIndex chosenWeapon = result[Random.Range(0,result.Length-1)];
+        Inventory.itemIndex chosenWeapon = result[Random.Range(0,result.Length)];
 
         inventory.AddItem(
             new Inventory.Item(

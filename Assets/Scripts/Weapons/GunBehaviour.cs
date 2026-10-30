@@ -15,7 +15,7 @@ public class GunBehaviour : MonoBehaviour
     [SerializeField] protected LayerMask coll;
     protected ParticleSystem ps;
 
-    [SerializeField] protected ParticleSystem[] psExplosiveAmmo;
+    protected ParticleSystem[] psExplosiveAmmo = new ParticleSystem[3];
     [SerializeField] private float shootTime = 0.5f;
     protected ParticleSystemRenderer psR;
 
@@ -118,6 +118,11 @@ public class GunBehaviour : MonoBehaviour
         if (ammoText != null)
         {
             ammoText.text = ammoCurrent + " / " + ammoQuantity;
+        }
+        Transform explosionBulletGO = player.transform.Find("ExplosiveAmmo").transform;
+        for(int i = 0; i < explosionBulletGO.childCount; i++)
+        {
+            psExplosiveAmmo[i] = explosionBulletGO.GetChild(i).gameObject.GetComponent<ParticleSystem>();
         }
 
         RefreshAmmoText();

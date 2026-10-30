@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
         UZI,
         MP5,
         RPG,
-        Remington,
+        M800,
         Balas_Pistola,
         Balas_Rifle,
         Balas_Sniper,
@@ -132,7 +132,7 @@ public class Inventory : MonoBehaviour
             case itemIndex.UZI:
             case itemIndex.MP5:
                 return itemIndex.Balas_Subfusil;
-            case itemIndex.Remington:
+            case itemIndex.M800:
                 return itemIndex.Balas_Escopeta;
             case itemIndex.RPG:
                 return itemIndex.Balas_Lanzacohete;

@@ -109,7 +109,6 @@ public class ZombieBase : MonoBehaviour
         if (blockedByBarricade || isStunned || isAttacking) return;
 
         Vector3 diff = playerTransform.position - transform.position;
-        diff.y = 0f;
 
         if (diff.magnitude <= attackRange)
         {
@@ -120,38 +119,6 @@ public class ZombieBase : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //----- Codigo borrado ----- El movimiento y la rotación ahora los hace el NavMeshAgent
-        /*
-        if (!isStunned)
-        {
-            Vector3 direction = playerTransform.position - transform.position; 
-            if (scriptedMovement)
-            {
-                if((scriptedDir - transform.position).magnitude < 1f) scriptedMovement = false;
-                else direction = scriptedDir - transform.position;
-            }
-             
-
-            direction.y = 0;
-            direction.Normalize();
-
-            Vector3 position = transform.position + direction * speedValues[speedIndex] * Time.fixedDeltaTime;
-            rb.MovePosition(position);
-
-            if (direction != Vector3.zero)
-            {
-                Quaternion rotation = Quaternion.LookRotation(direction);
-                rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.fixedDeltaTime));
-            }
-        } 
-        else
-        {
-            rb.linearVelocity = Vector3.zero;
-
-        }
-        */
-        //----- Codigo borrado -----
-
         float actualSpeed = isStunned ? 0 : speedValues[speedIndex];
         
         anim.SetFloat("Speed", actualSpeed);
@@ -238,11 +205,11 @@ public class ZombieBase : MonoBehaviour
         anim.Play("attack", 0, 0f);
 
         yield return new WaitForSeconds(0.3f);
-
-
+        Vector3 diff = playerTransform.position - transform.position;
+        bool disCloseEnough = diff.magnitude <= attackRange;
         bool blockedByBarricade = destroyingBarricade && ultimabarricada != null && !ultimabarricada.isOpen;
 
-        if (!blockedByBarricade) { player.LoseHealth(zombieDamage); }
+        if (!blockedByBarricade && disCloseEnough) { player.LoseHealth(zombieDamage); }
 
         yield return new WaitForSeconds(0.45f);
 

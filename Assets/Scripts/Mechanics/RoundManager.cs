@@ -7,12 +7,15 @@ public class RoundManager : MonoBehaviour
     [SerializeField] AudioSource RoundPassSFX;
     [SerializeField] GameObject ZombieSpawnerMain;
     [SerializeField] private TextMeshProUGUI roundText;
+    [SerializeField] GameObject zombieObj;
 
     private bool restartingRound = false;
     private List<SpawnerZombie> SZSpawners = new List<SpawnerZombie>();
     private List<ZombieBase> zombieList = new List<ZombieBase>();
     private int zombiesForCurrentRound = 4;
     private int currentRound = 1;
+
+    public int mapActivity = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +26,7 @@ public class RoundManager : MonoBehaviour
             SZSpawners.Add(child.GetComponent<SpawnerZombie>());
         }
     }
-    public void AddZombie(SpawnerZombie sz, Transform spawnTransform, Vector3 nearestBarricadePos, GameObject zombieObj)
+    public void AddZombie(Transform spawnTransform, Vector3 nearestBarricadePos)
     {
         if (zombieList.Count < 24 && zombiesForCurrentRound > 0)
         {
@@ -31,8 +34,7 @@ public class RoundManager : MonoBehaviour
             ZombieBase newZombieScript = newZombie.GetComponent<ZombieBase>();
             newZombieScript.goTo(nearestBarricadePos);
             zombieList.Add(newZombieScript);
-            zombiesForCurrentRound--;
-            sz.zombieSpawnTimer = 0;   
+            zombiesForCurrentRound--;   
         }
     }
 
@@ -64,6 +66,11 @@ public class RoundManager : MonoBehaviour
         {
             RestartRound();
         }
+    }
+
+    public void IncreaseMapIndex()
+    {
+        mapActivity++;
     }
     
 }

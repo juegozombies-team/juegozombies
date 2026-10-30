@@ -12,6 +12,12 @@ public class WeaponMachine : BaseMachine
 
     protected override void Buy()
     {
+        if (inventory.CheckFull()){
+            if (inventory.HasItem(Inventory.itemType.Ammo, Inventory.GetAmmoFor(givenWeapon)))
+            {
+                
+            }
+        }
         if (inventory.GetAmount(givenWeapon) > 0)
         {
             StartCoroutine(VisualPurchase("Bought ammo"));
@@ -25,6 +31,7 @@ public class WeaponMachine : BaseMachine
             StartCoroutine(VisualPurchase("You got: " + givenWeapon));
             SFX_Comprar.Play();
         }
+        SFX_Comprar.Play();
     }
 
     private void EntregarArma()
