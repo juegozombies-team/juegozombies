@@ -31,7 +31,14 @@ public class RoundManager : MonoBehaviour
         if (zombieList.Count < 24 && zombiesForCurrentRound > 0)
         {
             GameObject newZombie = Instantiate(zombieObj, spawnTransform.position, spawnTransform.rotation);
+
             ZombieBase newZombieScript = newZombie.GetComponent<ZombieBase>();
+            float minIndex = 0f;
+            float maxIndex = 0f;
+            if (currentRound >= 3 && currentRound < 6) maxIndex = 1;
+            if (currentRound >= 6) maxIndex = 2;
+            int indexRandom = (int)Random.Range(minIndex, maxIndex);
+            newZombieScript.ChangeSpeed(indexRandom);
             newZombieScript.goTo(nearestBarricadePos);
             zombieList.Add(newZombieScript);
             zombiesForCurrentRound--;   

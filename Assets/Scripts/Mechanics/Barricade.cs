@@ -107,7 +107,7 @@ public class Barricade : Interaction
         {
             if (barricades[i] != null && barricades[i].activeSelf)
             {
-                woodParticle.Play();
+                if(woodParticle != null) woodParticle.Play();
                 barricades[i].SetActive(false);
                 barricadasRestantes--;
                 break;

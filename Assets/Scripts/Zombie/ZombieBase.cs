@@ -58,13 +58,20 @@ public class ZombieBase : MonoBehaviour
 
     [SerializeField] private float[] speedValues = new float[3] { 1.6f, 1.8f, 2.4f };
 
-    private int speedIndex = 0;
+    [SerializeField] private int speedIndex = 0;
     private bool destroyingBarricade = false;
     private RoundManager rm;
 
     private Animator anim;
 
     private bool isAttacking = false;
+
+    public void ChangeSpeed(int index)
+    {
+        speedIndex = index;
+        nav.SetSpeed(speedValues[index]);
+
+    }
 
     // private float timerPos = 0f;
 
