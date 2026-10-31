@@ -36,7 +36,7 @@ public class PlayerInputs : MonoBehaviour
         lastWeaponAction = playerMap.FindAction("LastWeapon");
 
         playerMap.Enable();
-
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

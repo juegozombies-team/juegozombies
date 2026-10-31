@@ -19,7 +19,7 @@ public class SpawnerZombie : MonoBehaviour
 
     void Update()
     {
-        if (disabled)
+        if (!disabled)
         {
             zombieSpawnTimer += Time.deltaTime;
             if (zombieSpawnTimer > zombieSpawnCooldown)
@@ -29,7 +29,7 @@ public class SpawnerZombie : MonoBehaviour
         }
         else
         {
-            if (mapIndex >= rm.mapActivity) disabled = false;
+            if (mapIndex <= rm.mapActivity) disabled = false;
         }
         
     }

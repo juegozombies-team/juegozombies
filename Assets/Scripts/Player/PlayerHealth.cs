@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int healthMax = 6;
     [SerializeField] private float invulnTime = 0.75f;
 
+    [SerializeField] private ParticleSystem bloodParticle;
+
     public int health = 6;
     private HealthBar healthBar;
     private Player player;
@@ -53,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
             player.StartCoroutine(player.Shield());
             return;
         }
-
+        if (bloodParticle != null) bloodParticle.Play();
         health = Mathf.Max(0, health - damage);
         healthBar.OnHealthChange(health);
         if (health <= 0)

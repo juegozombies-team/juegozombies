@@ -7,6 +7,8 @@ public class Barricade : Interaction
     [SerializeField] private GameObject[] barricades;
     [SerializeField] private Collider ColliderPrincipal;
     [SerializeField] private float delayBarricada = 3f;
+
+    [SerializeField] private ParticleSystem woodParticle;
     public bool isOpen { get; private set; } = false;
     private bool cycle = false;
 
@@ -105,6 +107,7 @@ public class Barricade : Interaction
         {
             if (barricades[i] != null && barricades[i].activeSelf)
             {
+                woodParticle.Play();
                 barricades[i].SetActive(false);
                 barricadasRestantes--;
                 break;

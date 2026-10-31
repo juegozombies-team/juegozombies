@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static Player;
@@ -47,6 +48,10 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private RawImage shield;
     public RawImage shieldTime;
     public TextMeshProUGUI shieldTimeText;
+
+    [Header("Particulas")]
+
+    [SerializeField] private ParticleSystem rebirthParticle;
     private void Start()
     {
         perks = new RawImage[] { shielded, speed, haste, rebirth, scavenger, vampirism, criticalShots, explosiveBullets };
@@ -74,7 +79,7 @@ public class HealthBar : MonoBehaviour
             }
 
             if (rebirthCoroutine != null) StopCoroutine(rebirthCoroutine);
-
+            if (rebirthParticle != null) rebirthParticle.Play();
             rebirthCoroutine = StartCoroutine(VisualRebirth());
             StartCoroutine(VisualRebirthText());
         }

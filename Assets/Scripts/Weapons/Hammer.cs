@@ -11,6 +11,7 @@ public class Hammer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI HammerText;
     [SerializeField] private PlayerInputs pi;
 
+    [SerializeField] private ParticleSystem hammerParticle;
     private PlayerHealth ph;
     private Color originalColor;
     private float cooldownTimer;
@@ -70,6 +71,7 @@ public class Hammer : MonoBehaviour
             if (!isOnCooldown)
             {
                 HammerStun();
+                if (hammerParticle != null) hammerParticle.Play();
                 isOnCooldown = true;
                 cooldownTimer = 0;
                 UnityEvents.onCooldownChanged.Invoke(true);
