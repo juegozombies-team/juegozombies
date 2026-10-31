@@ -1,35 +1,49 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class WeaponMachine : BaseMachine
 {
     [SerializeField] private Inventory.itemIndex givenWeapon;
 
-    protected override void Start()
+    //----- NUEVO CODIGO ----- Balas = mitad, arma nueva = precio completo, inventario lleno sin esas balas = 0
+    protected override int CostoActual
     {
-        base.Start();
-        fullString = "Buy " + givenWeapon + " (" + PuntosRequeridos + ") (E)";
+        get
+        {
+            if (inventory == null) return PuntosRequeridos;
+            if (inventory.CheckFull())
+            {
+                bool tieneBalas = inventory.HasItem(Inventory.itemType.Ammo, Inventory.GetAmmoFor(givenWeapon));
+                return tieneBalas ? PuntosRequeridos / 2 : 0;
+            }
+            return inventory.GetAmount(givenWeapon) > 0 ? PuntosRequeridos / 2 : PuntosRequeridos;
+        }
     }
+    //----- NUEVO CODIGO -----
 
     protected override void Buy()
     {
-        if (inventory.CheckFull()){
+        if (inventory.CheckFull())
+        {
             if (inventory.HasItem(Inventory.itemType.Ammo, Inventory.GetAmmoFor(givenWeapon)))
             {
                 if (inventory.FindAndFillFirst(Inventory.GetAmmoFor(givenWeapon)))
                 {
-                    player.AwardPoints(PuntosRequeridos/2);
+                    //----- Codigo borrado ----- player.AwardPoints(PuntosRequeridos/2); -----Codigo borrado----- Ya no hay reembolso, CostoActual ya es la mitad
                     SFX_Comprar.Play();
                 }
                 else
                 {
-                    player.AwardPoints(PuntosRequeridos);
+                    //----- NUEVO CODIGO ----- No se cobra en vez de reembolsar
+                    compraFallida = true;
+                    //----- NUEVO CODIGO -----
                     StartCoroutine(VisualPurchase("Inventory is full"));
                 }
             }
             else
             {
-                player.AwardPoints(PuntosRequeridos);
+                //----- NUEVO CODIGO ----- No se cobra en vez de reembolsar
+                compraFallida = true;
+                //----- NUEVO CODIGO -----
                 StartCoroutine(VisualPurchase("Inventory is full"));
             }
             return;
@@ -38,8 +52,9 @@ public class WeaponMachine : BaseMachine
         {
             StartCoroutine(VisualPurchase("Bought ammo"));
             EntregarBalas();
-            player.AwardPoints(PuntosRequeridos / 2);
+            //----- Codigo borrado ----- player.AwardPoints(PuntosRequeridos / 2); -----Codigo borrado----- Ya no hay reembolso
         }
+    
         else
         {
             EntregarArma();
@@ -73,13 +88,13 @@ public class WeaponMachine : BaseMachine
         Inventory.Item nuevaArma = Inventory.CreateItem(givenWeapon);
         inventory.AddItem(nuevaArma);
         Inventory.itemIndex tipoDeBalas = Inventory.GetAmmoFor(givenWeapon);
-        Inventory.Item nuevasBalas = Inventory.CreateItem(tipoDeBalas, Inventory.GetLimit(tipoDeBalas)/2);
+        Inventory.Item nuevasBalas = Inventory.CreateItem(tipoDeBalas, Inventory.GetLimit(tipoDeBalas) / 2);
         inventory.AddItem(nuevasBalas);
     }
     private void EntregarBalas()
     {
         Inventory.itemIndex tipoDeBalas = Inventory.GetAmmoFor(givenWeapon);
-        Inventory.Item nuevasBalas = Inventory.CreateItem(tipoDeBalas, Inventory.GetLimit(tipoDeBalas)/2);
+        Inventory.Item nuevasBalas = Inventory.CreateItem(tipoDeBalas, Inventory.GetLimit(tipoDeBalas) / 2);
         inventory.AddItem(nuevasBalas);
     }
 }

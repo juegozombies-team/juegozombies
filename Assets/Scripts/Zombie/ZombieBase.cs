@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
@@ -27,7 +26,7 @@ public class ZombieBase : MonoBehaviour
     //----- Codigo borrado -----
 
     private Rigidbody rb;
-    
+
     //----- NUEVO CODIGO ----- Referencia al script que mueve al zombie con el NavMesh
     private ZombieNavmesh nav;
     //----- NUEVO CODIGO -----
@@ -46,12 +45,18 @@ public class ZombieBase : MonoBehaviour
     //----- NUEVO CODIGO -----
     private Barricade ultimabarricada;
 
+    //----- NUEVO CODIGO ----- Colliders de barricada que toca el zombie, y banderas para no morir ni quemarse dos veces
+    private int barricadeContacts = 0;
+    private bool isDead = false;
+    private bool isBurning = false; //por las dudas de que los zombies no golpeen la barricada y se quemen al mismo tiempo.
+    //----- NUEVO CODIGO -----
+
     // [SerializeField] private float rotationSpeed = 10f; la rotacion depende del agente, no del rigidbody.
 
     [SerializeField] private int zombieDamage = 1;
     [SerializeField] private ParticleSystem ps;
 
-    [SerializeField] private float[] speedValues = new float[3]{1.6f, 1.8f, 2.4f};
+    [SerializeField] private float[] speedValues = new float[3] { 1.6f, 1.8f, 2.4f };
 
     private int speedIndex = 0;
     private bool destroyingBarricade = false;
@@ -120,7 +125,7 @@ public class ZombieBase : MonoBehaviour
     private void FixedUpdate()
     {
         float actualSpeed = isStunned ? 0 : speedValues[speedIndex];
-        
+
         anim.SetFloat("Speed", actualSpeed);
 
     }
@@ -192,14 +197,28 @@ public class ZombieBase : MonoBehaviour
 
     private void Despawn()
     {
-        if (ultimabarricada != null)
-        {
-            if (destroyingBarricade) { ultimabarricada.zombiesClose--; }
-        }
+        //----- NUEVO CODIGO ----- Despawn corre una sola vez y libera la barricada
+        if (isDead) return;
+        isDead = true;
+        ReleaseBarricade();
+        //----- NUEVO CODIGO -----
         rm.RemoveZombie(this);
         pus.Spawn();
         Destroy(gameObject);
     }
+
+    //----- NUEVO CODIGO ----- Resta un solo zombiesClose por zombie y nunca baja de 0
+    private void ReleaseBarricade()
+    {
+        if (!destroyingBarricade) return;
+        destroyingBarricade = false;
+        if (ultimabarricada != null)
+        {
+            ultimabarricada.zombiesClose = Mathf.Max(0, ultimabarricada.zombiesClose - 1);
+        }
+        ultimabarricada = null;
+    }
+    //----- NUEVO CODIGO -----
 
 
     private IEnumerator Attack(PlayerHealth player)
@@ -218,55 +237,71 @@ public class ZombieBase : MonoBehaviour
         yield return new WaitForSeconds(0.45f);
 
         isAttacking = false;
-        
+
     }
 
-/*private void OnCollisionEnter(Collision collision)
-{
-    PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
-
-    if (player != null)
+    /*private void OnCollisionEnter(Collision collision)
     {
-        player.LoseHealth(zombieDamage);
-    }
-}*/
+        PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (player != null)
+        {
+            player.LoseHealth(zombieDamage);
+        }
+    }*/
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ZombieBarricade")){ 
-            ultimabarricada=other.GetComponentInParent<Barricade>();
-            ultimabarricada.zombiesClose++;
-            ultimabarricada.GetZombieAnim(anim);
-            destroyingBarricade = true;
-        }
-        if (other.CompareTag("Fire"))
+        //----- NUEVO CODIGO ----- Un zombie muerto no vuelve a sumarse a una barricada
+        if (isDead) return;
+        //----- NUEVO CODIGO -----
+        if (other.CompareTag("ZombieBarricade"))
         {
-            StartCoroutine(Burn());
+            //----- NUEVO CODIGO ----- Solo el primer collider suma a zombiesClose; los demás solo se cuentan
+            barricadeContacts++;
+            if (!destroyingBarricade)
+            {
+                ultimabarricada = other.GetComponentInParent<Barricade>();
+                ultimabarricada.zombiesClose++;
+                ultimabarricada.GetZombieAnim(anim);
+                destroyingBarricade = true;
+            }
+            //----- NUEVO CODIGO -----
+
+            //----- NUEVO CODIGO ----- 
+            if (other.CompareTag("Fire") && !isBurning)
+            {
+                isBurning = true;
+                StartCoroutine(Burn());
+            }
+            //----- NUEVO CODIGO -----
+        }
+
+
+
+        IEnumerator Burn()
+        {
+            isStunned = true;
+            //----- NUEVO CODIGO ----- Frena al agente mientras se quema
+            nav.SetStunned(true);
+            //----- NUEVO CODIGO -----
+            ps.Play();
+            yield return new WaitForSeconds(1f);
+            Despawn();
         }
     }
 
-    IEnumerator Burn()
-    {
-        isStunned = true;
-        //----- NUEVO CODIGO ----- Frena al agente mientras se quema
-        nav.SetStunned(true);
-        //----- NUEVO CODIGO -----
-        ps.Play();
-        yield return new WaitForSeconds(1f);
-        Despawn();
-    }
-    
+
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("ZombieBarricade"))
         {
-            if (health > 0)
-            {
-                ultimabarricada.zombiesClose--;
-                destroyingBarricade = false;
-            }
+            //----- NUEVO CODIGO ----- Libera la barricada recién al salir del último collider
+            barricadeContacts = Mathf.Max(0, barricadeContacts - 1);
+            if (barricadeContacts == 0) ReleaseBarricade();
+            //----- NUEVO CODIGO -----
         }
     }
-    public void goTo( Vector3 position)
+    public void goTo(Vector3 position)
     {
         //----- Codigo borrado -----
         // scriptedMovement = true;
