@@ -5822,6 +5822,7 @@ MonoBehaviour:
   - 1.6
   - 1.8
   - 2.4
+  speedIndex: 0
 --- !u!114 &2163085699649589148
 MonoBehaviour:
   m_ObjectHideFlags: 0
