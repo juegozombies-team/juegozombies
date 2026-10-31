@@ -5,9 +5,6 @@ using TMPro;
 
 public class OptionsMenu : MonoBehaviour
 {
-    // Escena a la que se vuelve al tocar "Volver"
-    public static string ReturnScene = "MainMenuScene"; // poné el nombre real de tu escena
-
     [Header("Mouse")]
     [SerializeField] Slider mouseSlider;
     [SerializeField] TMP_Text mouseLabel;
@@ -41,9 +38,4 @@ public class OptionsMenu : MonoBehaviour
             label.text = v.ToString("0.0") + "x";
         });
     }
-
-    public void Back()
-    {
-        SceneManager.LoadScene(ReturnScene);
-    }
-}
+} 
