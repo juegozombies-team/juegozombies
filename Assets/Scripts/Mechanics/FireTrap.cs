@@ -8,10 +8,6 @@ public class FireTrap : Interaction
     [SerializeField] private Transform FuegosParent;
     [SerializeField] private BoxCollider FuegoTrigger;
     [SerializeField] private ParticleSystem[] losfueguitos;
-
-    //----- NUEVO CODIGO ----- Sonido del fuego (en loop mientras la trampa está activa)
-    [SerializeField] private AudioSource fireSfx;
-    //----- NUEVO CODIGO -----
     private bool isFireActive = false;
 
     protected override void Start()
@@ -62,15 +58,9 @@ public class FireTrap : Interaction
         {
             i.Play();
         }
-        //----- NUEVO CODIGO ----- Arranca el loop junto con el fuego
-        if (fireSfx != null) fireSfx.Play();
-        //----- NUEVO CODIGO -----
         player.RemovePoints(PuntosRequeridos);
         yield return new WaitForSeconds(tiempoDeEspera);
         FuegoTrigger.gameObject.SetActive(false);
-        //----- NUEVO CODIGO ----- Corta el loop cuando se apaga
-        if (fireSfx != null) fireSfx.Stop();
-        //----- NUEVO CODIGO -----
         isFireActive = false;
     }
 }

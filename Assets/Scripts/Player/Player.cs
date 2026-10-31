@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,11 +63,6 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerHealth ph;
     [SerializeField] private ParticleSystem PlayerFire;
     [SerializeField] private ParticleSystem psWings;
-    //----- NUEVO CODIGO ----- Audio de pasos (en loop) y sonido al agarrar una mejora
-    [Header("Sonido")]
-    [SerializeField] private AudioSource footstepsSfx;
-    [SerializeField] private AudioSource powerUpSfx;
-    //----- NUEVO CODIGO -----
 
     private Animator anim;
 
@@ -118,8 +114,8 @@ public class Player : MonoBehaviour
             anim.SetFloat("Zspeed", forwardMovement);
             playerMovement = new Vector3(horizontalMovement, verticalMovement, forwardMovement);
             Quaternion rotacion = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
-            playerMovement = rotacion * playerMovement;
-        }
+            playerMovement = rotacion*playerMovement;
+        } 
         else
         {
             anim.SetLayerWeight(1, 0f);
@@ -127,11 +123,9 @@ public class Player : MonoBehaviour
             verticalMovement += gravity * Time.deltaTime;
             playerMovement = new Vector3(0, verticalMovement, 0);
         }
-        //----- NUEVO CODIGO ----- Actualiza los pasos antes de mover al jugador
-        UpdateFootsteps(isGrounded);
-        //----- NUEVO CODIGO -----
-        cc.Move(playerMovement * Time.deltaTime);
 
+        cc.Move(playerMovement * Time.deltaTime);
+        
     }
 
     public IEnumerator Shield()
@@ -144,26 +138,6 @@ public class Player : MonoBehaviour
         shieldAvailable = true;
         UnityEvents.shielded.Invoke(true);
     }
-    //----- NUEVO CODIGO ----- Suena el loop solo si está en el piso, moviéndose, vivo y con el juego sin pausar. El pitch sube con la velocidad
-    private void UpdateFootsteps(bool isGrounded)
-    {
-        if (footstepsSfx == null) return;
-
-        float speed = new Vector2(horizontalMovement, forwardMovement).magnitude;
-        bool isMoving = isGrounded && !ph.IsDying && Time.timeScale > 0f && speed > 0.1f;
-
-        if (isMoving)
-        {
-            footstepsSfx.pitch = Mathf.Clamp(speed / moveSpeed, 1f, 1.3f);
-            if (!footstepsSfx.isPlaying) footstepsSfx.Play();
-        }
-        else if (footstepsSfx.isPlaying)
-        {
-            footstepsSfx.Stop();
-        }
-    }
-    //----- NUEVO CODIGO -----
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -178,9 +152,6 @@ public class Player : MonoBehaviour
             {
                 PlayerBonus bonus = pu.pu;
                 ActivatePowerUp(bonus);
-                //----- NUEVO CODIGO ----- Sonido de agarrar la mejora
-                if (powerUpSfx != null) powerUpSfx.Play();
-                //----- NUEVO CODIGO -----
             }
             Destroy(other.gameObject);
         }

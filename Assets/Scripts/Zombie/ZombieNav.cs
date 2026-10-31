@@ -22,10 +22,6 @@ public class ZombieNavmesh : MonoBehaviour
     //----- NUEVO CODIGO -----
     private float repathTimer = 0f;
 
-    //----- NUEVO CODIGO ----- Audio de pasos del zombie (en loop)
-    [SerializeField] private AudioSource stepsSfx;
-    //----- NUEVO CODIGO -----
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -38,18 +34,11 @@ public class ZombieNavmesh : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
-        //----- NUEVO CODIGO ----- Pitch distinto por zombie para que no suenen todos iguales
-        if (stepsSfx != null) stepsSfx.pitch = Random.Range(0.9f, 1.1f);
-        //----- NUEVO CODIGO -----
     }
 
     private void Update()
     {
         if (!agent.isOnNavMesh) return;
-
-        //----- NUEVO CODIGO ----- Los pasos suenan solo si el agente se está moviendo
-        UpdateSteps();
-        //----- NUEVO CODIGO -----
 
         //----- NUEVO CODIGO ----- Si está frenado en la barricada, solo mira al jugador
         if (isHolding)
@@ -132,18 +121,6 @@ public class ZombieNavmesh : MonoBehaviour
         if (isHolding == holding) return;
         isHolding = holding;
         ApplyStop();
-    }
-    //----- NUEVO CODIGO -----
-
-    //----- NUEVO CODIGO ----- Prende o corta el loop según la velocidad real del agente
-    private void UpdateSteps()
-    {
-        if (stepsSfx == null) return;
-
-        bool isMoving = agent.velocity.sqrMagnitude > 0.1f;
-
-        if (isMoving && !stepsSfx.isPlaying) stepsSfx.Play();
-        else if (!isMoving && stepsSfx.isPlaying) stepsSfx.Stop();
     }
     //----- NUEVO CODIGO -----
 }

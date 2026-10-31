@@ -7,13 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int healthMax = 6;
     [SerializeField] private float invulnTime = 0.75f;
 
-<<<<<<< Updated upstream
     [SerializeField] private ParticleSystem bloodParticle;
-=======
-    //----- NUEVO CODIGO ----- Sonido de daño recibido
-    [SerializeField] private AudioSource damageSfx;
-    //----- NUEVO CODIGO -----
->>>>>>> Stashed changes
 
     public int health = 6;
     private HealthBar healthBar;
@@ -63,9 +57,6 @@ public class PlayerHealth : MonoBehaviour
         }
         if (bloodParticle != null) bloodParticle.Play();
         health = Mathf.Max(0, health - damage);
-        //----- NUEVO CODIGO ----- Suena solo si el escudo no absorbió el golpe
-        if (damageSfx != null) damageSfx.Play();
-        //----- NUEVO CODIGO -----
         healthBar.OnHealthChange(health);
         if (health <= 0)
         {
