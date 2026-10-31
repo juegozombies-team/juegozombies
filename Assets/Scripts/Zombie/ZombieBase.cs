@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
@@ -56,6 +56,18 @@ public class ZombieBase : MonoBehaviour
     [SerializeField] private int zombieDamage = 1;
     [SerializeField] private ParticleSystem ps;
 
+    //----- NUEVO CODIGO ----- Ruido idle: suena cada tanto, en un intervalo aleatorio entre x e y segundos.
+    //Sonidos de muerte: se reproducen fuera del GameObject para que no se corten al destruirlo
+    [Header("Sonido")]
+    [SerializeField] private AudioSource idleSfx;
+    [SerializeField] private Vector2 idleInterval = new Vector2(5f, 12f);
+    private float idleTimer;
+    [SerializeField] private AudioClip deathWeakClip;
+    [SerializeField] private AudioClip deathStrongClip;
+    [SerializeField, Range(0f, 1f)] private float deathVolume = 1f;
+    //----- NUEVO CODIGO -----
+    
+
     [SerializeField] private float[] speedValues = new float[3] { 1.6f, 1.8f, 2.4f };
 
     [SerializeField] private int speedIndex = 0;
@@ -88,9 +100,14 @@ public class ZombieBase : MonoBehaviour
         //----- NUEVO CODIGO -----
         rm = GameObject.FindWithTag("RoundManager").GetComponent<RoundManager>();
         health = rm.SetHealthBasedOnRound();
+        //----- NUEVO CODIGO ----- Primer ruido en un momento aleatorio
+        idleTimer = Random.Range(idleInterval.x, idleInterval.y);
+        //----- NUEVO CODIGO -----
+
         //----- NUEVO CODIGO ----- coroutina para q haga primero la anim de spawnear
         StartCoroutine(SpawnZombie());
         //----- NUEVO CODIGO ----- Le pasa la velocidad al agente
+
         // nav.SetSpeed(speedValues[speedIndex]); - CODIGO QUITADO, ahora cuando termina la animacion de spawnear ahi recien le da la velocidad correcta
         //----- NUEVO CODIGO -----
     }
@@ -115,6 +132,9 @@ public class ZombieBase : MonoBehaviour
     //----- NUEVO CODIGO ----- Frena al zombie si está en una barricada cerrada y ataca al jugador si está al alcance
     private void Update()
     {
+        //----- NUEVO CODIGO -----
+        UpdateIdleSound();
+        //----- NUEVO CODIGO -----
         bool blockedByBarricade = destroyingBarricade && ultimabarricada != null && !ultimabarricada.isOpen;
         nav.SetHolding(blockedByBarricade);
 
@@ -181,8 +201,14 @@ public class ZombieBase : MonoBehaviour
             player.AwardPoints(60);
             if (isHeadshot)
             {
+
                 player.AwardPoints(40);
             }
+
+            //----- NUEVO CODIGO ----- Le pasa si fue headshot para elegir el sonido
+            Despawn(isHeadshot);
+            //----- NUEVO CODIGO -----
+
             Despawn();
             if (player.activePerks[4] && playerAmmo.Gun != null)
             {
@@ -201,6 +227,31 @@ public class ZombieBase : MonoBehaviour
             player.AwardPoints(10);
         }
     }
+    //----- NUEVO CODIGO ----- isHeadshot es opcional: el Burn() sigue llamando a Despawn() sin parámetros y suena el débil
+    private void Despawn(bool isHeadshot = false)
+    //----- NUEVO CODIGO -----
+    {
+        //----- NUEVO CODIGO ----- Despawn corre una sola vez y libera la barricada
+        if (isDead) return;
+        isDead = true;
+        ReleaseBarricade();
+        //----- NUEVO CODIGO -----
+        //----- NUEVO CODIGO ----- Reproduce el sonido de muerte en la posición del zombie, sin depender de este GameObject
+        PlayDeathSound(isHeadshot);
+        //----- NUEVO CODIGO -----
+        rm.RemoveZombie(this);
+        pus.Spawn();
+        Destroy(gameObject);
+    }
+
+    //----- NUEVO CODIGO ----- Fuerte si fue headshot, débil en cualquier otro caso
+    private void PlayDeathSound(bool isHeadshot)
+    {
+        AudioClip clip = isHeadshot ? deathStrongClip : deathWeakClip;
+        if (clip == null) return;
+        AudioSource.PlayClipAtPoint(clip, transform.position, deathVolume);
+    }
+    //----- NUEVO CODIGO -----
 
     private void Despawn()
     {
@@ -319,5 +370,20 @@ public class ZombieBase : MonoBehaviour
         nav.SetWaypoint(position);
         //----- NUEVO CODIGO -----
     }
+    //----- NUEVO CODIGO ----- Cuenta regresiva y reproduce el ruido si no se está reproduciendo ya
+    private void UpdateIdleSound()
+    {
+        idleTimer -= Time.deltaTime;
+        if (idleTimer > 0f) return;
+
+        idleTimer = Random.Range(idleInterval.x, idleInterval.y);
+
+        if (idleSfx != null && !idleSfx.isPlaying)
+        {
+            idleSfx.pitch = Random.Range(0.9f, 1.1f);
+            idleSfx.Play();
+        }
+    }
+    //----- NUEVO CODIGO -----
 
 }

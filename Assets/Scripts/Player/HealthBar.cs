@@ -49,9 +49,17 @@ public class HealthBar : MonoBehaviour
     public RawImage shieldTime;
     public TextMeshProUGUI shieldTimeText;
 
+<<<<<<< Updated upstream
     [Header("Particulas")]
 
     [SerializeField] private ParticleSystem rebirthParticle;
+=======
+    //----- NUEVO CODIGO ----- Sonido del perk Rebirth al revivir
+    [SerializeField] private AudioSource rebirthSfx;
+    [SerializeField] private AudioSource shieldSfx;
+    [SerializeField] private AudioSource brokenShieldsfx;
+    //----- NUEVO CODIGO -----
+>>>>>>> Stashed changes
     private void Start()
     {
         perks = new RawImage[] { shielded, speed, haste, rebirth, scavenger, vampirism, criticalShots, explosiveBullets };
@@ -64,8 +72,7 @@ public class HealthBar : MonoBehaviour
         UnityEvents.onPowerUpTriggered.AddListener(VisualPowerUps);
         UnityEvents.onPerkActive.AddListener(VisualPerks);
         OnHealthChange(playerHealth.health);
-    }
-
+    }    
     private void OnDeath()
     {
         if (player.activePerks[3])
